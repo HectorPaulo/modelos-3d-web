@@ -82,24 +82,24 @@ export default function Home() {
                 ref={backgroundRef}
                 className="lg:h-[650px] md:h-[500px] h-70"
                 style={{
-                    backgroundImage: "url('/src/assets/3m1.jpg')",
+                    backgroundImage: "url('/src/assets/fondo1.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
             >
                 <div ref={headerRef} className="relative">
                     <div className="mx-auto flex justify-center px-4 py-6 sm:px-6 lg:px-8">
-                        <h1 className="text-7xl font-black tracking-widest text-gray-900">
+                        <h1 className="text-8xl font-black tracking-widest text-gray-900">
                             MODELOS
                         </h1>
                     </div>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="flex mt-20 justify-center">
                   <Carousel /> 
                 </div>
             </div>
             <div ref={contentRef}>
-                <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+                <div className="mx-auto mt-10 max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-2 gap-8">
                         {cards.map((card, index) => (
                             <div
