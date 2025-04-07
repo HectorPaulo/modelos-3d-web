@@ -12,7 +12,7 @@
     filter: brightness(1);
   }
   50% {
-    filter: brightness(0.1);
+    filter: brightness(0.6);
   }
   90% {
     filter: brightness(1);
@@ -44,7 +44,9 @@
   animation: animateBrightness 20s linear infinite;
   transition-duration: 200ms;
   will-change: transform, filter;
+  box-shadow: none;
 }
+
 
 .card-3d:hover {
   animation-play-state: paused !important;
