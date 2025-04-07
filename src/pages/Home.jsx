@@ -3,6 +3,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Carousel from "../components/Carrusel/Carousel"; // Asegúrate de importar el componente Carousel
 import BlurText from "../TextAnimations/BlurText/BlurText";
+import Aurora from "../Backgrounds/Aurora/Aurora"; // Importa el componente Aurora
+import Iridescence from "../Backgrounds/Iridescence/Iridescence"; // Importa el componente Iridescence
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home({ isDarkMode }) { // Recibir isDarkMode como prop
@@ -92,29 +95,46 @@ export default function Home({ isDarkMode }) { // Recibir isDarkMode como prop
             {/* Sección de encabezado con fondo */}
             <div
                 ref={backgroundRef}
-                className={`lg:h-[650px] md:h-[500px] h-70 ${isDarkMode ? "bg-dark" : "bg-light"} transition-all duration-300`}
+                className={`${isDarkMode ? "relative lg:h-[650px] md:h-[500px] h-70 transition-all duration-300" : "relative lg:h-[650px] md:h-[550px] h-100 pt-20 transition-all duration-300 overflow-hidden rounded-b-full"} `}
                 style={{
                     transformOrigin: "center center",
                     transition: "transform 0.1s, border-radius 0.1s",
                 }}
             >
-                <div ref={headerRef} className="relative">
-                    <div className="mx-auto flex justify-center px-4 py-6 sm:px-6 lg:px-8">
-                        {/* <h1 className="text-8xl font-black tracking-widest">
-                            MODELOS
-                        </h1> */}
+                {/* Fondo dinámico */}
+                <div className="absolute inset-0 z-0">
+                    {isDarkMode ? (
+                        <Aurora
+                            colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+                            blend={0.5}
+                            amplitude={1.0}
+                            speed={0.5}
+                        />
+                    ) : (
+                        <Iridescence
+                            color={[1, 1, 1]}
+                            mouseReact={false}
+                            amplitude={0.1}
+                            speed={1.0}
+                        />
+                    )}
+                </div>
+
+                {/* Contenido principal */}
+                <div className="relative z-10">
+                    <div ref={headerRef} className="mx-auto flex justify-center px-4 py-6 sm:px-6 lg:px-8 pt-20">
                         <BlurText
                             text="¡MODELOS 3D!"
                             delay={400}
                             animateBy="letters"
                             direction="bottom"
                             onAnimationComplete={handleAnimationComplete}
-                            className="text-7xl font-black text-white mb-8"
+                            className="text-7xl lg:text-9xl font-black text-gray-800 "
                             />
                     </div>
-                </div>
-                <div className="flex mt-20 justify-center">
-                    <Carousel />
+                    <div className="flex justify-center">
+                        <Carousel />
+                    </div>
                 </div>
             </div>
 

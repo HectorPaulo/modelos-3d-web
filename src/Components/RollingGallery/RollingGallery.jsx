@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*
 	Installed from https://reactbits.dev/tailwind/
 */
@@ -42,7 +43,7 @@ const RollingGallery = ({
   // 3D geometry
   const cylinderWidth = isScreenSizeSm ? 1100 : 1800;
   const faceCount = images.length;
-  const faceWidth = (cylinderWidth / faceCount) * 1.5;
+  const faceWidth = isScreenSizeSm ? (cylinderWidth / faceCount) * 1.5 : (cylinderWidth / faceCount) * 1.6;
   const radius = cylinderWidth / (2 * Math.PI);
 
   // Framer Motion
@@ -110,7 +111,7 @@ const RollingGallery = ({
   };
 
   return (
-    <div className="relative h-[500px] w-full overflow-hidden">
+    <div className="relative h-[500px] w-full hidden md:block">
       <div
         className="absolute top-0 left-0 h-full w-[48px] z-10"
       />
