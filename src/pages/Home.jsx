@@ -2,12 +2,16 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Carousel from "../components/Carrusel/Carousel"; // Asegúrate de importar el componente Carousel
+import BlurText from "../TextAnimations/BlurText/BlurText";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home({ isDarkMode }) { // Recibir isDarkMode como prop
     const headerRef = useRef(null);
     const contentRef = useRef(null);
     const backgroundRef = useRef(null);
+    const handleAnimationComplete = () => {
+        console.log("Animation complete!");
+    };
 
     // Crear referencias para las tarjetas y las imágenes
     const cardRefs = useRef([]);
@@ -96,9 +100,17 @@ export default function Home({ isDarkMode }) { // Recibir isDarkMode como prop
             >
                 <div ref={headerRef} className="relative">
                     <div className="mx-auto flex justify-center px-4 py-6 sm:px-6 lg:px-8">
-                        <h1 className="text-8xl font-black tracking-widest">
+                        {/* <h1 className="text-8xl font-black tracking-widest">
                             MODELOS
-                        </h1>
+                        </h1> */}
+                        <BlurText
+                            text="¡MODELOS 3D!"
+                            delay={400}
+                            animateBy="letters"
+                            direction="bottom"
+                            onAnimationComplete={handleAnimationComplete}
+                            className="text-7xl font-black text-white mb-8"
+                            />
                     </div>
                 </div>
                 <div className="flex mt-20 justify-center">
@@ -119,7 +131,7 @@ export default function Home({ isDarkMode }) { // Recibir isDarkMode como prop
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={() => handleMouseLeave(index)}
                             >
-                                <h2 className={`absolute top-0 left-0 text-center w-full h-full flex items-center justify-center text-2xl font-bold transition-opacity duration-300 ${isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-800"}`}>
+                                <h2  className={`absolute top-0 left-0 text-center w-full h-full flex items-center justify-center text-2xl font-bold transition-opacity duration-300 ${isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-800"}`}>
                                     {card.name}
                                 </h2>
                                 <img

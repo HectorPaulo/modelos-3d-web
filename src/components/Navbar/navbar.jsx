@@ -29,6 +29,17 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                             </Link>
                         </div>
                     </div>
+                    <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                        <div className="flex shrink-0 items-center">
+                            <Link to="/profile">
+                                <img
+                                    className="h-8 w-auto"
+                                    src="/src/assets/account_circle.png"
+                                    alt="profile"
+                                />
+                            </Link>
+                        </div>
+                    </div>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 justify-center">
                         <input
                             type="checkbox"
