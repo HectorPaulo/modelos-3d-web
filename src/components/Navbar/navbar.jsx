@@ -15,21 +15,21 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     }, []);
 
     return (
-        <nav ref={navbarRef} className={`bg-gray-800 ${isDarkMode ? "dark:bg-black" : ""}`}>
+        <nav ref={navbarRef} className={`bg-[#d6c594] ${isDarkMode ? "dark:bg-[#141729]" : ""}`}>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex shrink-0 items-center">
                             <Link to="/">
                                 <img
-                                    className="h-8 w-auto"
+                                    className="h-12 w-auto"
                                     src="/src/assets/vite.png"
                                     alt="Modelos"
                                 />
                             </Link>
                         </div>
                     </div>
-                    <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    {/* <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex shrink-0 items-center">
                             <Link to="/profile">
                                 <img
@@ -39,8 +39,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                                 />
                             </Link>
                         </div>
-                    </div>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 justify-center">
+                    </div> */}
+                    {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 justify-center">
                         <input
                             type="checkbox"
                             id="react-option"
@@ -92,7 +92,18 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                                 strokeWidth="8"
                             ></path>
                         </svg>
-                    </div>
+                    </div> */}
+                    <label class="relative inline-flex items-center cursor-pointer">
+                    <input onChange={toggleTheme}
+                            checked={isDarkMode}
+                            class="sr-only peer" 
+                            value="" 
+                            type="checkbox" />
+                    <div
+                        class="w-24 h-12 rounded-full ring-0 peer duration-500 outline-none before:bg-yellow-200 overflow-hidden before:flex before:items-center before:justify-center after:flex after:items-center after:justify-center before:content-['☀️'] before:absolute before:h-10 before:w-10 before:top-1/2 before:rounded-full before:left-1 before:-translate-y-1/2 before:transition-all before:duration-700 peer-checked:before:opacity-0 peer-checked:before:rotate-90 peer-checked:before:-translate-y-full peer-checked:shadow-lg after:content-['🌑'] after:absolute after:bg-[#1d1d1d] after:rounded-full after:top-[4px] after:right-1 after:translate-y-full after:w-10 after:h-10 after:opacity-0 after:transition-all after:duration-700 peer-checked:after:opacity-100 peer-checked:after:rotate-180 peer-checked:after:translate-y-0"
+                    ></div>
+                    </label>
+
                 </div>
             </div>
         </nav>

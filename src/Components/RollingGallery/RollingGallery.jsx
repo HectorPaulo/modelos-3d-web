@@ -1,8 +1,4 @@
 /* eslint-disable no-unused-vars */
-/*
-	Installed from https://reactbits.dev/tailwind/
-*/
-
 import { useEffect, useState } from "react";
 import {
   motion,
@@ -111,7 +107,7 @@ const RollingGallery = ({
   };
 
   return (
-    <div className="relative h-[500px] w-full hidden md:block">
+    <div className="relative h-[500px] w-full hidden md:block -mt-60">
       <div
         className="absolute top-0 left-0 h-full w-[48px] z-10"
       />
@@ -151,7 +147,7 @@ const RollingGallery = ({
               <img
                 src={url}
                 alt="gallery"
-                className="pointer-events-none h-[120px] w-[300px] rounded-[15px] border-[3px] border-white object-cover
+                className="pointer-events-none h-100 w-100 rounded-[15px] object-cover
                            transition-transform duration-300 ease-out group-hover:scale-105
                            sm:h-[100px] sm:w-[220px]"
               />
