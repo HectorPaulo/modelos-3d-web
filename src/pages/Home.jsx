@@ -115,32 +115,32 @@ export default function Home({ isDarkMode }) { // Recibir isDarkMode como prop
                             color={[1, 1, 1]}
                             mouseReact={false}
                             amplitude={0.1}
-                            speed={1.0}
+                            speed={0.5}
                         />
                     )}
                 </div>
 
                 {/* Contenido principal */}
                 <div className="relative z-10">
-                    <div ref={headerRef} className="mx-auto flex justify-center px-4 py-6 sm:px-6 lg:px-8 pt-20">
+                    <div ref={headerRef} className="mx-auto flex justify-center px-4 sm:px-6 lg:px-8 pt-20">
                         <BlurText
                             text="¡MODELOS 3D!"
                             delay={400}
                             animateBy="letters"
                             direction="bottom"
                             onAnimationComplete={handleAnimationComplete}
-                            className="text-7xl lg:text-9xl font-black text-gray-800 "
+                            className={`text-7xl lg:text-9xl font-black ${isDarkMode ? "text-gray-200" : "text-gray-800 "}`}
                             />
-                    </div>
-                    <div className="flex justify-center">
-                        <Carousel />
                     </div>
                 </div>
             </div>
+                    <div className="flex justify-center -mt-80 relative z-20">
+                        <Carousel />
+                    </div>
 
             {/* Sección de contenido principal */}
             <div ref={contentRef}>
-                <div className="mx-auto mt-10 max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-30">
                     <div className="grid grid-cols-2 gap-8">
                         {cards.map((card, index) => (
                             <div
