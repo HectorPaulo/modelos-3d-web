@@ -15,14 +15,14 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     }, []);
 
     return (
-        <nav ref={navbarRef} className={`bg-[#d6c594] ${isDarkMode ? "dark:bg-[#141729]" : ""}`}>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <nav ref={navbarRef} className={`bg-[#141729] ${isDarkMode ? "dark:bg-[#141729]" : ""}`}>
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-3">
                 <div className="relative flex h-16 items-center justify-between">
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex shrink-0 items-center">
                             <Link to="/">
                                 <img
-                                    className="h-12 w-auto"
+                                    className="h-15 w-auto"
                                     src="/src/assets/vite.png"
                                     alt="Modelos"
                                 />
@@ -93,7 +93,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                             ></path>
                         </svg>
                     </div> */}
-                    <label class="relative inline-flex items-center cursor-pointer">
+                    <label class="relative inline-flex items-center cursor-pointer border-2 rounded-full border-gray-500">
                     <input onChange={toggleTheme}
                             checked={isDarkMode}
                             class="sr-only peer" 

@@ -110,68 +110,62 @@ export default function Home({ isDarkMode }) {
                             speed={0.5}
                         />
                     ) : (
-                        <img src="/src/assets/Backgrounds/abstracto5.jpg" alt="Fondo abstracto 5" />
+                        // <img src="/src/assets/Backgrounds/abstracto5.jpg" alt="Fondo abstracto 5" />
+                        <div className="absolute bg-[#141729] w-full h-svh">
+
+                        </div>
                     )}
                 </div>
 
                 {/* Contenido principal */}
                 <div className="relative z-10">
                     <div ref={headerRef} className="mx-auto flex justify-center px-4 sm:px-6 lg:px-8">
-                        <BlurText
-                            text="¡MODELOS 3D!"
-                            delay={400}
-                            animateBy="letters"
-                            direction="bottom"
-                            className={`text-5xl sm:text-7xl lg:text-9xl font-black ${
-                                isDarkMode ? "text-gray-200 mt-20 sm:mt-40" : "text-gray-800"
-                            }`}
-                        />
+                        <div className="flex flex-col items-center justify-center space-y-25">
+                            <BlurText
+                                text="Biblioteca de modelos 3D"
+                                delay={400}
+                                animateBy="letters"
+                                direction="bottom"
+                                className={`text-gray-200 text-5xl sm:text-7xl lg:text-9xl font-black ${
+                                    isDarkMode ? "mt-20 sm:mt-40" : ""
+                                }`}
+                            />
+                                                            {/* <img
+                                        className="h-50 w-auto"
+                                        src="/src/assets/vite.png"
+                                        alt="Logo"
+                                    /> */}
+
+            <Carousel />
+                        </div>
                     </div>
                 </div>
             </div>
-            <Carousel />
 
             {/* Sección de contenido principal */}
             <div ref={contentRef}>
-                <div className="mx-auto mt-10 sm:-mt-20 md:-mt-40 max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+                <div className="mx-auto mt-10 sm:-mt-20 md:-mt-40 lg:-mt-20 xl:mt-0 max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                         {cards.map((card, index) => (
                             <div
                                 key={index}
                                 ref={(el) => (cardRefs.current[index] = el)}
-                                className={`relative overflow-hidden rounded-b-xl border-[#aeceb2] transition-all duration-300 cursor-pointer ${
-                                    isDarkMode ? "bg-gray-800 rounded border-t-transparent" : "bg-white"
+                                className={`relative overflow-hidden rounded-xl border-[#aeceb2] transition-all duration-300 cursor-pointer ${
+                                    isDarkMode ? "bg-[#141729] rounded border-t-transparent" : "bg-transparent"
                                 }`}
-                                style={{ height: window.innerWidth < 640 ? "100px" : "150px" }} // Altura inicial responsive
+                                style={{ height: window.innerWidth < 640 ? "100px" : "150px" }}
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={() => handleMouseLeave(index)}
-                                onClick={() => handleCardClick(card.path)} // Maneja el clic en la tarjeta
+                                onClick={() => handleCardClick(card.path)}
                             >
-                                {card.name === "Bacija de barro" ? (
-                                    <div className="h-full w-full">
-                                        <MuseumModelCanvas /> {/* Renderiza el modelo 3D */}
-                                        <div className={`absolute bottom-0 left-0 w-full py-2 text-center 
-                                            ${isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"}`}
-                                        >
-                                            {card.name}
-                                        </div>
+                                <div className="h-full w-full">
+                                    <MuseumModelCanvas />
+                                    <div className={`absolute bottom-0 left-0 w-full py-2 text-center 
+                                        ${isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"}`}
+                                    >
+                                        {card.name}
                                     </div>
-                                ) : (
-                                    <>
-                                        <h2
-                                            className={`absolute top-0 left-0 text-center w-full h-full flex items-center justify-center text-2xl font-bold transition-opacity duration-300 ${
-                                                isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-800"
-                                            }`}
-                                        >
-                                            {card.name}
-                                        </h2>
-                                        <img
-                                            ref={(el) => (imgRefs.current[index] = el)}
-                                            src={card.image}
-                                            className="absolute cursor-pointer top-0 left-0 w-full h-full object-cover opacity-0"
-                                        />
-                                    </>
-                                )}
+                                </div>
                             </div>
                         ))}
                     </div>
