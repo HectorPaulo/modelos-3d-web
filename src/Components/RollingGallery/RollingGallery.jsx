@@ -8,16 +8,16 @@ import {
 } from "framer-motion";
 
 const IMGS = [
-  "/src/assets/ModelImages/porfirio-diaz1.jpeg",
-  "/src/assets/ModelImages/cruz-de-piedra4.jpeg",
-  "/src/assets/ModelImages/iglesia1.jpeg",
-  "/src/assets/ModelImages/sto-domingo1.jpeg",
-  "/src/assets/ModelImages/teatro-macedonio-alcala-3.jpeg",
-  "/src/assets/ModelImages/armadura2.jpeg",
-  "/src/assets/ModelImages/porfirio-diaz3.jpeg",
-  "/src/assets/ModelImages/iglesia2.jpeg",
-  "/src/assets/ModelImages/cruz-de-piedra5.jpeg",
-  "/src/assets/ModelImages/teatro-macedonio-alcala-1.jpeg",
+  "/Assets/ModelImages/porfirio-diaz1.jpeg",
+  "/Assets/ModelImages/cruz-de-piedra4.jpeg",
+  "/Assets/ModelImages/iglesia1.jpeg",
+  "/Assets/ModelImages/sto-domingo1.jpeg",
+  "/Assets/ModelImages/teatro-macedonio-alcala-3.jpeg",
+  "/Assets/ModelImages/armadura2.jpeg",
+  "/Assets/ModelImages/porfirio-diaz3.jpeg",
+  "/Assets/ModelImages/iglesia2.jpeg",
+  "/Assets/ModelImages/cruz-de-piedra5.jpeg",
+  "/Assets/ModelImages/teatro-macedonio-alcala-1.jpeg",
 ];
 
 const RollingGallery = ({
