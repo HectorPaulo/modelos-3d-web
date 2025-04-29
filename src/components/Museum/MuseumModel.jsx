@@ -5,10 +5,10 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { useLoader } from "@react-three/fiber";
 
 const MuseumModel = () => {
-  const obj = useLoader(OBJLoader, "/src/Models/Museum/output.obj");
+  const obj = useLoader(OBJLoader, "/public/Models/Museum/output.obj");
   const textures = useTexture({
-    map: "/src/Models/Museum/baked_mesh_tex0.png",
-    normalMap: "/src/Models/Museum/baked_mesh_norm0.png",
+    map: "/public/Models/Museum/baked_mesh_tex0.png",
+    normalMap: "/public/Models/Museum/baked_mesh_norm0.png",
   });
 
   return (
