@@ -10,7 +10,7 @@ const Museum = () => {
   const decodedName = modelName ? decodeURIComponent(modelName) : "Modelo 3D";
 
   return (
-    <div className="w-screen h-screen bg-gray-900 -mt-4 text-white">
+    <div className="w-screen h-screen bg-white -mt-4 text-white">
       <h1 className="text-center text-6xl font-bold my-4">{decodedName}</h1>
       <div className="w-full h-full">
         <MuseumModelCanvas />

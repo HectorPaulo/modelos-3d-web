@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate
+import { useNavigate } from "react-router-dom"; 
 import Carousel from "../components/Carrusel/Carousel";
 import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
