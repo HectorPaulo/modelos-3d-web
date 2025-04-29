@@ -1,10 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Login from './pages/Login'; // Importa el componente Login
 import Navbar from './components/Navbar/navbar';
 import React, { useState, useEffect } from 'react';
-import Profile from './pages/Profile';
 import Museum from './pages/Museum'
 import Footer from './components/Footer/Footer';
 
@@ -36,9 +34,8 @@ function App() {
       <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
       <Routes>
         <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile isDarkMode={isDarkMode} />} />
-        <Route path="/museum" element={<Museum />} /> {/* Nueva ruta */}
+        <Route path="/museum/:modelName" element={<Museum />} /> {/* Ruta con parámetro */}
+        <Route path="/museum" element={<Museum />} /> {/* Mantener ruta original como fallback */}
       </Routes>
       <Footer />
     </Router>

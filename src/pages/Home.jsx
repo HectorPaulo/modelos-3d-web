@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import Carousel from "../components/Carrusel/Carousel";
 import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
-import Iridescence from "../Backgrounds/Iridescence/Iridescence";
 import MuseumModelCanvas from "../components/Museum/MuseumModel"; 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -77,8 +76,13 @@ export default function Home({ isDarkMode }) {
         });
     };
 
-    const handleCardClick = (path) => {
-        navigate(path); // Redirige al usuario a la ruta especificada
+    const handleCardClick = (path, name) => {
+        // Si es la ruta del museo, incluir el nombre del modelo en la URL
+        if (path === "/museum") {
+            navigate(`/museum/${encodeURIComponent(name)}`);
+        } else {
+            navigate(path);
+        }
     };
 
     const cards = [
@@ -126,7 +130,7 @@ export default function Home({ isDarkMode }) {
                                 delay={400}
                                 animateBy="letters"
                                 direction="bottom"
-                                className={`text-gray-200 text-5xl sm:text-7xl lg:text-9xl font-black ${
+                                className={`text-gray-200 text-5xl sm:text-5xl lg:text-9xl font-black ${
                                     isDarkMode ? "mt-20 sm:mt-40" : ""
                                 }`}
                             />
@@ -150,17 +154,22 @@ export default function Home({ isDarkMode }) {
                             <div
                                 key={index}
                                 ref={(el) => (cardRefs.current[index] = el)}
-                                className={`relative overflow-hidden rounded-xl border-[#aeceb2] transition-all duration-300 cursor-pointer ${
+                                className={`w-2/3 relative overflow-hidden rounded-xl border-[#aeceb2] transition-all duration-300 cursor-pointer ${
                                     isDarkMode ? "bg-[#141729] rounded border-t-transparent" : "bg-transparent"
                                 }`}
                                 style={{ height: window.innerWidth < 640 ? "100px" : "150px" }}
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={() => handleMouseLeave(index)}
-                                onClick={() => handleCardClick(card.path)}
+                                onClick={() => handleCardClick(card.path, card.name)}
                             >
+                                {/* Etiqueta para modelos 3D */}
+                                <div className="absolute top-2 right-2 z-30 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                                    3D
+                                </div>
+                                
                                 <div className="h-full w-full">
                                     <MuseumModelCanvas />
-                                    <div className={`absolute bottom-0 left-0 w-full py-2 text-center 
+                                    <div className={`absolute bottom-0 left-0 w-full py-2 text-center font-semibold text-2xl 
                                         ${isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"}`}
                                     >
                                         {card.name}
