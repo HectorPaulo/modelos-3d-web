@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   motion,
   useMotionValue,
   useAnimation,
   useTransform,
 } from "framer-motion";
+import { useResponsiveContext } from "../../context/ResponsiveContext";
 
 const IMGS = [
   "/Assets/ModelImages/porfirio-diaz1.jpeg",
@@ -27,35 +28,19 @@ const RollingGallery = ({
 }) => {
   images = images.length > 0 ? images : IMGS;
 
-  // Detectar tamaños de pantalla más granulares
-  const [screenSize, setScreenSize] = useState({
-    isSmall: window.innerWidth <= 640,
-    isMedium: window.innerWidth > 640 && window.innerWidth <= 1024,
-    isLarge: window.innerWidth > 1024
-  });
-  
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize({
-        isSmall: window.innerWidth <= 640,
-        isMedium: window.innerWidth > 640 && window.innerWidth <= 1024,
-        isLarge: window.innerWidth > 1024
-      });
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Usar nuestro contexto responsive
+  const { breakpoint, width, isMobile, isTablet, isDesktop } = useResponsiveContext();
 
-  // Ajustar dimensiones según el tamaño de la pantalla
+  // Ajustar dimensiones según el tamaño de pantalla
   const getCylinderWidth = () => {
-    if (screenSize.isSmall) return 1100;
-    if (screenSize.isMedium) return 1800;
+    if (isMobile) return 1100;
+    if (isTablet) return 1800;
     return 2200; // Para pantallas grandes
   };
   
   const getFaceWidth = (cylinderWidth, count) => {
-    if (screenSize.isSmall) return (cylinderWidth / count) * 1.5;
-    if (screenSize.isMedium) return (cylinderWidth / count) * 1.6;
+    if (isMobile) return (cylinderWidth / count) * 1.5;
+    if (isTablet) return (cylinderWidth / count) * 1.6;
     return (cylinderWidth / count) * 1.8; // Más grande para pantallas grandes
   };
 
@@ -130,7 +115,9 @@ const RollingGallery = ({
   };
 
   return (
-    <div className="relative h-[700px] w-full hidden md:block -mt-60">
+    <div className={`relative ${
+      isMobile ? 'hidden' : 'block'
+    } h-[700px] w-full -mt-60`}>
       <div
         className="absolute top-0 left-0 h-full w-[48px] z-10"
       />

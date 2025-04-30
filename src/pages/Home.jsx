@@ -6,10 +6,12 @@ import Carousel from "../components/Carrusel/Carousel";
 import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
 import MuseumModelCanvas from "../components/Museum/MuseumModel"; 
+import { useResponsiveContext } from "../context/ResponsiveContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home({ isDarkMode }) {
+    const { isMobile, breakpoint } = useResponsiveContext();
     const headerRef = useRef(null);
     const contentRef = useRef(null);
     const backgroundRef = useRef(null);
@@ -50,7 +52,7 @@ export default function Home({ isDarkMode }) {
 
     const handleMouseEnter = (index) => {
         gsap.to(cardRefs.current[index], {
-            height: window.innerWidth < 640 ? "200px" : "300px",
+            height: isMobile ? "200px" : "300px",
             duration: 0.5,
             ease: "power2.out",
         });
@@ -64,20 +66,19 @@ export default function Home({ isDarkMode }) {
 
     const handleMouseLeave = (index) => {
         gsap.to(cardRefs.current[index], {
-            height: window.innerWidth < 640 ? "100px" : "150px", // Altura colapsada responsive
+            height: isMobile ? "100px" : "150px",
             duration: 0.5,
             ease: "power2.out",
         });
         gsap.to(imgRefs.current[index], {
-            opacity: 0, // Ocultar la imagen
-            scale: 1, // Restaurar el tamaño original
+            opacity: 0,
+            scale: 1,
             duration: 0.5,
             ease: "power2.out",
         });
     };
 
     const handleCardClick = (path, name) => {
-        // Si es la ruta del museo, incluir el nombre del modelo en la URL
         if (path === "/museum") {
             navigate(`/museum/${encodeURIComponent(name)}`);
         } else {
@@ -96,8 +97,8 @@ export default function Home({ isDarkMode }) {
                 ref={backgroundRef}
                 className={`${
                     isDarkMode 
-                        ? "relative lg:h-[650px] md:h-[500px] h-70 transition-all duration-300" 
-                        : "relative lg:h-[650px] md:h-[550px] h-100 pt-20 transition-all duration-300 overflow-hidden rounded-b-full"
+                        ? "relative lg:h-[670px] md:h-[500px] h-70 transition-all duration-200" 
+                        : "relative lg:h-[900px] md:h-[550px] h-100 pt-20 transition-all duration-200 overflow-hidden rounded-b-full"
                 } `}
                 style={{
                     transformOrigin: "center center",
@@ -114,7 +115,6 @@ export default function Home({ isDarkMode }) {
                             speed={0.5}
                         />
                     ) : (
-                        // <img src="/src/assets/Backgrounds/abstracto5.jpg" alt="Fondo abstracto 5" />
                         <div className="absolute bg-[#141729] w-full h-svh">
 
                         </div>
@@ -126,21 +126,15 @@ export default function Home({ isDarkMode }) {
                     <div ref={headerRef} className="mx-auto flex justify-center px-4 sm:px-6 lg:px-8">
                         <div className="flex flex-col items-center justify-center space-y-25">
                             <BlurText
-                                text="Biblioteca de modelos 3D"
+                                text="Biblioteca de modelos"
                                 delay={400}
                                 animateBy="letters"
                                 direction="bottom"
-                                className={`text-gray-200 text-5xl sm:text-5xl lg:text-9xl font-black ${
+                                className={`text-gray-200 mt-30 mb-40 text-5xl sm:text-5xl lg:text-9xl font-black ${
                                     isDarkMode ? "mt-20 sm:mt-40" : ""
                                 }`}
                             />
-                                                            {/* <img
-                                        className="h-50 w-auto"
-                                        src="/src/assets/vite.png"
-                                        alt="Logo"
-                                    /> */}
-
-            <Carousel />
+                            <Carousel />
                         </div>
                     </div>
                 </div>
@@ -148,16 +142,21 @@ export default function Home({ isDarkMode }) {
 
             {/* Sección de contenido principal */}
             <div ref={contentRef}>
-                <div className="mx-auto mt-10 sm:-mt-20 md:-mt-40 lg:-mt-20 xl:mt-0 max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
+                <div className={`mx-auto ${
+                    breakpoint === 'xs' || breakpoint === 'sm' ? 'mt-10' :
+                    breakpoint === 'md' ? '-mt-40' :
+                    breakpoint === 'lg' ? '-mt-20' :
+                    'mt-0'
+                } max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8`}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                         {cards.map((card, index) => (
                             <div
                                 key={index}
                                 ref={(el) => (cardRefs.current[index] = el)}
                                 className={`w-2/3 relative overflow-hidden rounded-xl border-[#aeceb2] transition-all duration-300 cursor-pointer ${
-                                    isDarkMode ? "bg-[#141729] rounded border-t-transparent" : "bg-transparent"
+                                    isDarkMode ? "bg-[#141729] rounded border-t-transparent mt-40" : "bg-transparent"
                                 }`}
-                                style={{ height: window.innerWidth < 640 ? "100px" : "150px" }}
+                                style={{ height: isMobile ? "100px" : "150px" }}
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={() => handleMouseLeave(index)}
                                 onClick={() => handleCardClick(card.path, card.name)}
