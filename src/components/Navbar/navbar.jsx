@@ -6,7 +6,6 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     const navbarRef = useRef(null);
 
     useEffect(() => {
-        // Animación de entrada del Navbar
         gsap.fromTo(
             navbarRef.current,
             { y: -100, opacity: 0 },
@@ -23,7 +22,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                             <Link to="/">
                                 <img
                                     className="h-15 w-auto"
-                                    src="/src/assets/vite.png"
+                                    src="/Assets/vite.png"
                                     alt="Modelos"
                                 />
                             </Link>
