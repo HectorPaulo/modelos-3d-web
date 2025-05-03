@@ -1,18 +1,19 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate } from "react-router-dom"; 
-import Carousel from "../components/Carrusel/Carousel";
+import Carousel from "../Components/Carrusel/Carousel";
 import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
-import MuseumModelCanvas from "../components/Museum/MuseumModel"; 
+import MuseumModelCanvas from "../Components/Museum/MuseumModel"; 
 import { useResponsiveContext } from "../context/ResponsiveContext";
 import { getModelConfig } from "../utils/ModelRegistry";
+import ImageInput from "../Components/ImageInput/ImageInput";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home({ isDarkMode }) {
-    const { isMobile, breakpoint } = useResponsiveContext();
+    const { isMobile } = useResponsiveContext();
     const headerRef = useRef(null);
     const contentRef = useRef(null);
     const backgroundRef = useRef(null);
@@ -20,6 +21,13 @@ export default function Home({ isDarkMode }) {
 
     const cardRefs = useRef([]);
     const imgRefs = useRef([]);
+
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const handleImageChange = (file) => {
+        setSelectedImage(file);
+        // TODO: Exportar la imagen al servidor aquí
+    }
 
     useEffect(() => {
         gsap.fromTo(
@@ -106,7 +114,6 @@ export default function Home({ isDarkMode }) {
 
     return (
         <div className={`min-h-screen ${isDarkMode ? "bg-black text-gray-100" : "bg-white text-gray-200"}`}>
-            {/* Sección de encabezado con fondo */}
             <div
                 ref={backgroundRef}
                 className={`${
@@ -155,21 +162,34 @@ export default function Home({ isDarkMode }) {
             </div>
 
             {/* Sección de contenido principal */}
+            <div className="mt-20 px-4 mx-auto w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
+                <h2 className={`text-lg font-bold mb-4 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>Comparar fotografía de un monumento histórico</h2>
+
+                <ImageInput 
+                    value={selectedImage}
+                    onChange={handleImageChange}
+                    maxSize={10}
+                    label="Sube una imagen"
+                    accept="image/png, image/jpeg"
+                    aspectRatio="16/9"
+                />
+
+                {selectedImage && (
+                    <p className="mt-4">
+                        Imagen seleccionada: {selectedImage.name} ({(selectedImage.size / 1024).toFixed(2)} KB)
+                    </p>
+                )}
+            </div>
             <div ref={contentRef}>
-                <div className={`mx-auto ${
-                    breakpoint === 'xs' || breakpoint === 'sm' ? 'mt-10' :
-                    breakpoint === 'md' ? '-mt-10' :
-                    breakpoint === 'lg' ? '-mt-20' :
-                    'mt-0'
-                } max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8`}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
+                <div className={`mx-auto mt-0 max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8`}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 place-items-center">
                         {cards.map((card, index) => (
                             <div
                                 key={index}
                                 ref={(el) => (cardRefs.current[index] = el)}
-                                className={`w-2/3 relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer ${
+                                className={`w-full max-w-md relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer mx-auto ${
                                     isDarkMode 
-                                        ? "bg-[#141729] border-gray-700 mt-40" 
+                                        ? "bg-[#141729] border-gray-700 mt-10 sm:mt-20 md:mt-40" 
                                         : "bg-white/30 border-[#aeceb2]"
                                 }`}
                                 style={{ 

@@ -1,10 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Navbar from './components/Navbar/navbar';
+import Navbar from './Components/Navbar/navbar';
 import React, { useState, useEffect } from 'react';
 import Museum from './pages/Museum';
-import Footer from './components/Footer/Footer';
+import Footer from './Components/Footer/Footer';
 import { ResponsiveProvider } from './context/ResponsiveContext';
 
 // Función para determinar el tema según la hora del día

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import MuseumModelCanvas from "../components/Museum/MuseumModel";
+import MuseumModelCanvas from "../Components/Museum/MuseumModel";
 import { useResponsiveContext } from "../context/ResponsiveContext";
 import { getModelConfig } from "../utils/ModelRegistry";
 
@@ -57,8 +57,8 @@ const Museum = ({ isDarkMode }) => {
         </h1>
         
         <div className="text-center text-sm mb-4">
-          <span className={`inline-block px-3 py-1.5 rounded-full text-white font-medium ${
-            isDarkMode ? 'bg-blue-700' : 'bg-blue-600'
+          <span className={`inline-block px-3 py-1.5 rounded-xl text-white font-semibold ${
+            isDarkMode ? 'bg-blue-700' : 'bg-[#141729]'
           }`}>
             Formato: {modelConfig?.modelType?.toUpperCase() || "Desconocido"}
           </span>
