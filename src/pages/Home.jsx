@@ -7,6 +7,7 @@ import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
 import MuseumModelCanvas from "../components/Museum/MuseumModel"; 
 import { useResponsiveContext } from "../context/ResponsiveContext";
+import { getModelConfig } from "../utils/ModelRegistry";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,8 +87,21 @@ export default function Home({ isDarkMode }) {
         }
     };
 
+    // Definición de tarjetas con tipos de modelos específicos
     const cards = [
-        { name: "Bacija de barro", image: null, path: "/museum" }, 
+        {
+            name: "Bacija de barro",
+            path: "/museum",
+            modelType: "obj",
+            modelPath: "/Models/Museum/output.obj",
+            texturePath: "/Models/Museum/baked_mesh_tex0.png",
+            normalMapPath: "/Models/Museum/baked_mesh_norm0.png"
+        },
+        {
+            name: "Fuente de las 8 regiones",
+            path: "/museum",
+            ...getModelConfig("Fuente de las 8 regiones")
+        }
     ];
 
     return (
@@ -144,7 +158,7 @@ export default function Home({ isDarkMode }) {
             <div ref={contentRef}>
                 <div className={`mx-auto ${
                     breakpoint === 'xs' || breakpoint === 'sm' ? 'mt-10' :
-                    breakpoint === 'md' ? '-mt-40' :
+                    breakpoint === 'md' ? '-mt-10' :
                     breakpoint === 'lg' ? '-mt-20' :
                     'mt-0'
                 } max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8`}>
@@ -153,21 +167,34 @@ export default function Home({ isDarkMode }) {
                             <div
                                 key={index}
                                 ref={(el) => (cardRefs.current[index] = el)}
-                                className={`w-2/3 relative overflow-hidden rounded-xl border-[#aeceb2] transition-all duration-300 cursor-pointer ${
-                                    isDarkMode ? "bg-[#141729] rounded border-t-transparent mt-40" : "bg-transparent"
+                                className={`w-2/3 relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer ${
+                                    isDarkMode 
+                                        ? "bg-[#141729] border-gray-700 mt-40" 
+                                        : "bg-white/30 border-[#aeceb2]"
                                 }`}
-                                style={{ height: isMobile ? "100px" : "150px" }}
+                                style={{ 
+                                    height: isMobile ? "100px" : "150px",
+                                    boxShadow: isDarkMode ? '0 4px 6px -1px rgba(0, 0, 0, 0.5)' : 'none'
+                                }}
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={() => handleMouseLeave(index)}
                                 onClick={() => handleCardClick(card.path, card.name)}
                             >
                                 {/* Etiqueta para modelos 3D */}
                                 <div className="absolute top-2 right-2 z-30 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
-                                    3D
+                                    {card.modelType === 'stl' ? 'STL' : 'OBJ'}
                                 </div>
                                 
                                 <div className="h-full w-full">
-                                    <MuseumModelCanvas />
+                                    <MuseumModelCanvas 
+                                        modelPath={card.modelPath}
+                                        modelType={card.modelType}
+                                        texturePath={card.texturePath}
+                                        normalMapPath={card.normalMapPath}
+                                        color={card.color}
+                                        autoRotate={true}
+                                        background={isDarkMode ? "#141729" : "transparent"}
+                                    />
                                     <div className={`absolute bottom-0 left-0 w-full py-2 text-center font-semibold text-2xl 
                                         ${isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"}`}
                                     >
