@@ -372,30 +372,31 @@ export default function Home({ isDarkMode }) {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-row-reverse items-start justify-end mt-10 sm:mt-20">
-
+            <div className="flex flex-row-reverse items-start justify-center mt-10 sm:mt-20">
                 <div className="mt-10 sm:mt-20 w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
-                    <h2 className={`font-black mb-4 text-5xl ${isDarkMode ? "text-white" : "text-[#141729]"}`}>Comparar fotografía de un monumento histórico</h2>
+                    <h2 className={`font-black mb-4 text-5xl ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
+                        Comparar fotografía de un monumento histórico
+                    </h2>
 
-                    <ImageInput 
+                    <ImageInput
                         value={selectedImage}
                         onChange={handleImageChange}
                         maxSize={10}
                         label="Sube una imagen"
                         accept="image/png, image/jpeg"
                         aspectRatio="16/9"
-                        />
+                    />
 
                     {selectedImage && (
                         <p className={`mt-4 ${isDarkMode ? "text-gray-300" : "text-gray-800"}`}>
                             Imagen seleccionada: {selectedImage.name} ({(selectedImage.size / 1024).toFixed(2)} KB)
                         </p>
                     )}
-                    
+
                     {errorMessage && (
                         <p className="mt-2 text-red-500">{errorMessage}</p>
                     )}
-                    
+
                     <div className="flex justify-center">
                         <button
                             onClick={handleSearchModel}
@@ -409,13 +410,23 @@ export default function Home({ isDarkMode }) {
                         </button>
                     </div>
                 </div>
-                        
-                        <div
-                            className="cursor-pointer w-1/2 h-full" // Ajusta el tamaño según sea necesario
-                            onClick={() => navigate("/library")} // Redirigir a /library al hacer clic
-                        >
-                            <SplineModel isDarkMode={isDarkMode}/>
-                        </div>
+
+                {/* Contenedor de SplineModel con superposición */}
+                <div className="relative w-2/5 h-full hidden lg:block"> {/* Mostrar solo en pantallas grandes */}
+                    {/* Div superpuesto para capturar clics */}
+                    <div
+                        className="absolute inset-0 z-30 cursor-pointer"
+                        onClick={() => navigate("/library")}
+                    ></div>
+
+                    <div className="w-150 h-150 rounded-full  z-[-10] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+
+<div className="relative z-20">
+
+                    {/* Componente SplineModel */}
+                    <SplineModel isDarkMode={isDarkMode} />
+</div>
+                </div>
             </div>
             <div ref={contentRef}>
                 <div className={`mx-auto mt-0 max-w-7xl px-4 py-6 sm:py-12 sm:px-6 lg:px-8`}>

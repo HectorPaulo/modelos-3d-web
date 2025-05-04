@@ -139,7 +139,7 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                                 Esta plataforma busca preservar y difundir el patrimonio cultural a través de representaciones digitales precisas, facilitando el acceso al conocimiento histórico y arquitectónico.
                             </p>
                             <p>
-                                Versión 2.10.3 - Desarrollado con tecnologías web modernas como React, Three.js y TailwindCSS.
+                                Versión 2.10.4 - Desarrollado con tecnologías web modernas como React, Three.js y TailwindCSS.
                             </p>
                         </div>
                     </div>

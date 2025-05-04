@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useResponsiveContext } from "../../context/ResponsiveContext";
 
 const SplineModel = ({ isDarkMode }) => {
   const { isMobile, isTablet } = useResponsiveContext();
+  const navigate = useNavigate();
 
   return (
     <div className="relative w-full h-full ">
@@ -13,6 +15,7 @@ const SplineModel = ({ isDarkMode }) => {
             backgroundColor: isDarkMode ? "black" : "white",
             pointerEvents: "none", // Evita que interfiera con la interacción del modelo
         }}
+        onClick={() => navigate("/library")}
     ></div>
 
     {/* Mostrar el modelo solo en pantallas grandes */}
