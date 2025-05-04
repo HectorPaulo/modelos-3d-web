@@ -10,12 +10,12 @@ const modelRegistry = {
     modelPath: "/Models/Fuente8Regiones/output.obj",
     texturePath: null,  
     normalMapPath: null, 
-    color: "#8b5a2b",
+    color: "#454545",
     camera: {
-      distance: 8,        
-      minDistance: 3,     
-      maxDistance: 15,    
-      position: [1, 2, 8] 
+      distance: 35,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -5, 35] // Alejado considerablemente
     }
   },
   "Bacija de barro": {
@@ -24,32 +24,32 @@ const modelRegistry = {
     texturePath: "/Models/Museum/baked_mesh_tex0.png",
     normalMapPath: "/Models/Museum/baked_mesh_norm0.png",
     camera: {
-      distance: 8,
-      minDistance: 0.5,
-      maxDistance: 0.5,
-      position: [1, 2, 0.5]
+      distance: 1.5,
+      minDistance: 1,
+      maxDistance: 3,
+      position: [0, 0, 1.5] // Acercado como solicitaste
     }
   },
   "Cruz": {
     modelType: "obj",
     modelPath: "/Models/Cruz/output.obj",
-    color: "#964B00", // Marrón oscuro para simular madera
+    color: "#963f3f",
     camera: {
-      distance: 15,
-      minDistance: 5,
-      maxDistance: 30,
-      position: [0, 0, 15]
+      distance: 40,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -15, 40] // Alejado considerablemente
     }
   },
   "Kiosko": {
     modelType: "obj",
     modelPath: "/Models/Kiosko/output.obj",
-    color: "#556B2F", // Verde oliva oscuro
+    color: "#666f56",
     camera: {
-      distance: 20,
-      minDistance: 10,
-      maxDistance: 40,
-      position: [0, 2, 20]
+      distance: 35,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -2, 35] // Alejado considerablemente
     }
   }
 };

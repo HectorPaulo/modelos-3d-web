@@ -1,11 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MuseumModelCanvas from "../Museum/MuseumModel";
-import { getModelConfig } from "../../utils/ModelRegistry";
+import { getModelConfig, getAllModels } from "../../utils/ModelRegistry";
 
 const ComparisonModal = ({ isOpen, onClose, userImage, monumentName, navigateToModel }) => {
-  if (!isOpen) return null;
+  const [modelConfig, setModelConfig] = useState(null);
+  const [modelError, setModelError] = useState(false);
+  const [matchedModelName, setMatchedModelName] = useState(""); // Nueva variable para guardar el nombre coincidente
   
-  const modelConfig = getModelConfig(monumentName) || {};
+  useEffect(() => {
+    if (monumentName) {
+      // Intentar encontrar una coincidencia exacta
+      let config = getModelConfig(monumentName);
+      let foundModelName = monumentName;
+      
+      // Si no hay coincidencia exacta, buscar una coincidencia parcial mejorada
+      if (!config) {
+        const allModels = getAllModels();
+        const modelNames = Object.keys(allModels);
+        
+        // Buscar coincidencias parciales con mayor flexibilidad
+        const similarModelName = modelNames.find(name => 
+          // Normalizar ambos textos: convertir a minúsculas y eliminar espacios extras
+          name.toLowerCase().replace(/\s+/g, ' ').includes(monumentName.toLowerCase().replace(/\s+/g, ' ')) || 
+          monumentName.toLowerCase().replace(/\s+/g, ' ').includes(name.toLowerCase().replace(/\s+/g, ' ')) ||
+          // Verificar si contienen las mismas palabras clave (como "fuente" y "regiones")
+          name.toLowerCase().includes("fuente") && name.toLowerCase().includes("regiones") && 
+          monumentName.toLowerCase().includes("fuente") && monumentName.toLowerCase().includes("regiones")
+        );
+        
+        if (similarModelName) {
+          config = getModelConfig(similarModelName);
+          foundModelName = similarModelName; // Guardar el nombre del modelo encontrado
+        }
+      }
+      
+      if (config) {
+        setModelConfig(config);
+        setModelError(false);
+        setMatchedModelName(foundModelName); // Guardar el nombre del modelo encontrado
+      } else {
+        // Si no se encuentra ninguna coincidencia
+        setModelError(true);
+        setMatchedModelName(""); // Limpiar el nombre del modelo
+        setModelConfig({
+          modelPath: "/Models/Error/objError.obj",
+          modelType: "obj",
+          color: "#ff0000"
+        });
+      }
+    }
+  }, [monumentName]);
+
+  if (!isOpen) return null;
   
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -38,18 +84,28 @@ const ComparisonModal = ({ isOpen, onClose, userImage, monumentName, navigateToM
           
           {/* Modelo 3D */}
           <div className="flex flex-col">
-            <h3 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-200">Modelo 3D</h3>
+            <h3 className="text-lg font-medium mb-2 text-gray-800 dark:text-gray-200">
+              {modelError ? "Modelo no disponible" : "Modelo 3D"}
+            </h3>
             <div className="bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden aspect-video">
-              <MuseumModelCanvas 
-                modelPath={modelConfig.modelPath}
-                modelType={modelConfig.modelType}
-                texturePath={modelConfig.texturePath}
-                normalMapPath={modelConfig.normalMapPath}
-                color={modelConfig.color}
-                autoRotate={true}
-                background="transparent"
-              />
+              {modelConfig && (
+                <MuseumModelCanvas 
+                  modelPath={modelConfig.modelPath}
+                  modelType={modelConfig.modelType || "obj"}
+                  texturePath={modelConfig.texturePath}
+                  normalMapPath={modelConfig.normalMapPath}
+                  color={modelConfig.color || "#808080"}
+                  autoRotate={true}
+                  background="transparent"
+                  cameraConfig={modelConfig.camera}
+                />
+              )}
             </div>
+            {modelError && (
+              <p className="text-amber-500 mt-2 text-sm">
+                El modelo 3D para este monumento no está disponible en nuestra biblioteca actual.
+              </p>
+            )}
           </div>
         </div>
         
@@ -61,10 +117,14 @@ const ComparisonModal = ({ isOpen, onClose, userImage, monumentName, navigateToM
             Cerrar
           </button>
           <button
-            onClick={() => navigateToModel(monumentName)}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition"
+            onClick={() => {
+              // Usar el nombre del modelo coincidente o el original si no hay coincidencia
+              navigateToModel(matchedModelName || monumentName);
+            }}
+            className={`px-4 py-2 ${modelError ? 'bg-gray-500' : 'bg-blue-600 hover:bg-blue-700'} text-white rounded-md transition`}
+            disabled={modelError}
           >
-            Ver detalles del modelo
+            {modelError ? 'Modelo no disponible' : 'Ver detalles del modelo'}
           </button>
         </div>
       </div>

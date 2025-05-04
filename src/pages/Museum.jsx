@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import MuseumModelCanvas from "../Components/Museum/MuseumModel";
 import { useResponsiveContext } from "../context/ResponsiveContext";
 import { getModelConfig } from "../utils/ModelRegistry";
@@ -10,6 +10,11 @@ const Museum = ({ isDarkMode }) => {
   const decodedName = modelName ? decodeURIComponent(modelName) : "Modelo no encontrado";
   const [isLoading, setIsLoading] = useState(true);
   const [modelConfig, setModelConfig] = useState(null);
+  
+  // Asegurar que la página comience en la parte superior
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   useEffect(() => {
     const timer = setTimeout(() => {

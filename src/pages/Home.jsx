@@ -7,7 +7,7 @@ import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
 import MuseumModelCanvas from "../Components/Museum/MuseumModel"; 
 import { useResponsiveContext } from "../context/ResponsiveContext";
-import { getModelConfig } from "../utils/ModelRegistry";
+import { getModelConfig, getAllModels } from "../utils/ModelRegistry";
 import ImageInput from "../Components/ImageInput/ImageInput";
 import ComparisonModal from "../Components/Modal/ComparisionModal";
 import Loader from "../Components/Loader/Loader";
@@ -57,13 +57,15 @@ export default function Home({ isDarkMode }) {
         setErrorMessage(null);
         
         try {
+            // Crear un FormData y adjuntar la imagen con el nombre de campo 'file'
             const formData = new FormData();
-            formData.append('image', selectedImage);
+            formData.append('file', selectedImage); // Cambiar 'image' por 'file'
+            
+            console.log("Enviando solicitud a la API...");
             
             const response = await fetch('https://monumentos-historicos-e45c66f49b57.herokuapp.com/predict', {
                 method: 'POST',
                 body: formData,
-                // Añadir configuración CORS si es necesario
                 credentials: 'omit',
             });
             
@@ -78,10 +80,14 @@ export default function Home({ isDarkMode }) {
             }
             
             const data = await response.json();
-            if (data && data.monument_name) {
-                setModelResponse(data.monument_name);
+            console.log("Respuesta completa de la API:", data);
+            
+            if (data && data.monument) {
+                console.log("Monumento reconocido:", data.monument);
+                setModelResponse(data.monument);
                 setIsModalOpen(true);
             } else {
+                console.log("No se reconoció el monumento. Datos recibidos:", data);
                 setAlertMessage("No se pudo identificar el monumento en la imagen");
                 setAlertType("info");
                 setShowAlert(true);
@@ -98,7 +104,19 @@ export default function Home({ isDarkMode }) {
 
     const navigateToModel = (monumentName) => {
         setIsModalOpen(false);
-        navigate(`/museum/${encodeURIComponent(monumentName)}`);
+        
+        // Intentar encontrar una coincidencia aproximada si no hay una exacta
+        const allModels = getAllModels();
+        const modelNames = Object.keys(allModels);
+        
+        // Buscar coincidencias parciales
+        const similarModelName = modelNames.find(name => 
+            name.toLowerCase().includes(monumentName.toLowerCase()) || 
+            monumentName.toLowerCase().includes(name.toLowerCase())
+        );
+        
+        const nameToNavigate = similarModelName || monumentName;
+        navigate(`/museum/${encodeURIComponent(nameToNavigate)}`);
     };
 
     useEffect(() => {
