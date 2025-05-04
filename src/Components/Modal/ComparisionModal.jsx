@@ -5,10 +5,13 @@ import { getModelConfig, getAllModels } from "../../utils/ModelRegistry";
 const ComparisonModal = ({ isOpen, onClose, userImage, monumentName, navigateToModel }) => {
   const [modelConfig, setModelConfig] = useState(null);
   const [modelError, setModelError] = useState(false);
-  const [matchedModelName, setMatchedModelName] = useState(""); // Nueva variable para guardar el nombre coincidente
+  const [matchedModelName, setMatchedModelName] = useState(""); // Variable para guardar el nombre coincidente
   
   useEffect(() => {
     if (monumentName) {
+      // Normalizar el nombre para búsqueda
+      const normalizedName = monumentName.toLowerCase().trim();
+      
       // Intentar encontrar una coincidencia exacta
       let config = getModelConfig(monumentName);
       let foundModelName = monumentName;
@@ -18,19 +21,28 @@ const ComparisonModal = ({ isOpen, onClose, userImage, monumentName, navigateToM
         const allModels = getAllModels();
         const modelNames = Object.keys(allModels);
         
-        // Buscar coincidencias parciales con mayor flexibilidad
-        const similarModelName = modelNames.find(name => 
-          // Normalizar ambos textos: convertir a minúsculas y eliminar espacios extras
-          name.toLowerCase().replace(/\s+/g, ' ').includes(monumentName.toLowerCase().replace(/\s+/g, ' ')) || 
-          monumentName.toLowerCase().replace(/\s+/g, ' ').includes(name.toLowerCase().replace(/\s+/g, ' ')) ||
-          // Verificar si contienen las mismas palabras clave (como "fuente" y "regiones")
-          name.toLowerCase().includes("fuente") && name.toLowerCase().includes("regiones") && 
-          monumentName.toLowerCase().includes("fuente") && monumentName.toLowerCase().includes("regiones")
-        );
-        
-        if (similarModelName) {
-          config = getModelConfig(similarModelName);
-          foundModelName = similarModelName; // Guardar el nombre del modelo encontrado
+        // Búsqueda específica para kiosko/quiosco con diferentes variantes
+        if (normalizedName.includes('kiosko') || normalizedName.includes('quiosco')) {
+          config = getModelConfig("Kiosko");
+          foundModelName = "Kiosko";
+        } 
+        // Búsqueda específica para fuente de las 8 regiones
+        else if (normalizedName.includes('fuente') && (normalizedName.includes('8') || normalizedName.includes('ocho') || normalizedName.includes('region'))) {
+          config = getModelConfig("Fuente de las 8 regiones");
+          foundModelName = "Fuente de las 8 regiones";
+        }
+        // Otras búsquedas más generales
+        else {
+          // Buscar coincidencias parciales con mayor flexibilidad
+          const similarModelName = modelNames.find(name => 
+            name.toLowerCase().replace(/\s+/g, ' ').includes(normalizedName.replace(/\s+/g, ' ')) || 
+            normalizedName.replace(/\s+/g, ' ').includes(name.toLowerCase().replace(/\s+/g, ' '))
+          );
+          
+          if (similarModelName) {
+            config = getModelConfig(similarModelName);
+            foundModelName = similarModelName;
+          }
         }
       }
       
@@ -118,7 +130,7 @@ const ComparisonModal = ({ isOpen, onClose, userImage, monumentName, navigateToM
           </button>
           <button
             onClick={() => {
-              // Usar el nombre del modelo coincidente o el original si no hay coincidencia
+              // Usar el nombre del modelo coincidente que ya encontramos o el original si no hay coincidencia
               navigateToModel(matchedModelName || monumentName);
             }}
             className={`px-4 py-2 ${modelError ? 'bg-gray-500' : 'bg-blue-600 hover:bg-blue-700'} text-white rounded-md transition`}

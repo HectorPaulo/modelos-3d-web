@@ -132,37 +132,36 @@ export default function Home({ isDarkMode }) {
             { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.5 }
         );
 
-        // Animaciones para los rectángulos decorativos - ahora 4 veces más lentas
         // Rectángulos izquierdos - animación de entrada
         gsap.fromTo(
             leftRect1Ref.current,
             { height: 0, opacity: 0 },
-            { height: "100vh", opacity: 1, duration: 4.8, ease: "power3.out" }
+            { height: "100vh", opacity: 1, duration: 14.4, ease: "power3.out" }
         );
         
         gsap.fromTo(
             leftRect2Ref.current,
             { height: 0, opacity: 0 },
-            { height: "99vh", opacity: 1, duration: 6.0, ease: "power3.out", delay: 0.8 }
+            { height: "99vh", opacity: 1, duration: 18.0, ease: "power3.out", delay: 2.4 }
         );
         
         // Rectángulos derechos - animación de entrada
         gsap.fromTo(
             rightRect1Ref.current,
             { height: 0, opacity: 0 },
-            { height: "100vh", opacity: 1, duration: 4.8, ease: "power3.out", delay: 1.2 }
+            { height: "100vh", opacity: 1, duration: 14.4, ease: "power3.out", delay: 3.6 }
         );
         
         gsap.fromTo(
             rightRect2Ref.current,
             { height: 0, opacity: 0 },
-            { height: "110vh", opacity: 1, duration: 6.0, ease: "power3.out", delay: 2.0 }
+            { height: "110vh", opacity: 1, duration: 18.0, ease: "power3.out", delay: 6.0 }
         );
         
-        // Animaciones continuas para cada rectángulo - ahora 4 veces más lentas
+        // Animaciones continuas para cada rectángulo - ahora 12 veces más lentas que las originales
         gsap.to(leftRect1Ref.current, {
             height: "150vh", 
-            duration: 8, // 4x más lento
+            duration: 24, // 12x más lento que el original
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
@@ -170,29 +169,29 @@ export default function Home({ isDarkMode }) {
         
         gsap.to(leftRect2Ref.current, {
             height: "140vh",
-            duration: 10, // 4x más lento
+            duration: 30, // 12x más lento
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            delay: 2.0
+            delay: 6.0
         });
         
         gsap.to(rightRect1Ref.current, {
             height: "150vh",
-            duration: 9.2, // 4x más lento
+            duration: 27.6, // 12x más lento
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            delay: 1.2
+            delay: 3.6
         });
         
         gsap.to(rightRect2Ref.current, {
             height: "140vh",
-            duration: 11.2, // 4x más lento
+            duration: 33.6, // 12x más lento
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            delay: 2.8
+            delay: 8.4
         });
 
         const handleScroll = () => {

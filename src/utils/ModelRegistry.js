@@ -54,6 +54,14 @@ const modelRegistry = {
   }
 };
 
+const modelAliases = {
+  "kiosko": "Kiosko",
+  "quiosco": "Kiosko",
+  "fuente de las 8 regiones": "Fuente de las 8 regiones",
+  "fuente de las ocho regiones": "Fuente de las 8 regiones",
+  "fuente regiones": "Fuente de las 8 regiones"
+};
+
 /**
  * Get configuration for a specific model
  * @param {string} modelName - The name of the model
@@ -62,7 +70,15 @@ const modelRegistry = {
 export const getModelConfig = (modelName) => {
   if (!modelName) return null;
   
-  // Return the model config if it exists, or null if not found
+  // Buscar en alias primero
+  const normalizedName = modelName.toLowerCase().trim();
+  for (const [alias, realName] of Object.entries(modelAliases)) {
+    if (normalizedName.includes(alias)) {
+      return modelRegistry[realName];
+    }
+  }
+  
+  // Si no hay alias, buscar directamente
   return modelRegistry[modelName] || null;
 };
 
