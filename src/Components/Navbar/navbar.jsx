@@ -26,33 +26,33 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
         }`}>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-2">
                 <div className="relative flex h-14 sm:h-16 items-center justify-between">
-                    {/* Logo y navegación principal */}
                     <div className="flex items-center">
                         <Link to="/" className="flex items-center">
                             <img
-                                className="h-8 w-auto sm:h-10"
-                                src="/Assets/vite.png"
+                                className="h-20 w-auto sm:h-22"
+                                src="/Assets/PE_BLANCO.png"
                                 alt="Modelos 3D"
                             />
-                            <span className="ml-2 text-white font-medium hidden sm:block">
-                                Universidad La Salle Oaxaca | Biblioteca de Monumentos
+                            <span className="ml-2 font-semibold text-2xl text-white hidden sm:block">
+                                Biblioteca de Monumentos
                             </span>
                         </Link>
                     </div>
-                    
-                    {/* Enlaces de navegación */}
                     <div className="hidden md:flex items-center">
+                        <Link 
+                            to="/library" 
+                            className="mx-4 font-semibold text-xl text-white hover:text-indigo-200 transition"
+                        >
+                            Biblioteca
+                        </Link>
                         <button 
                             onClick={toggleAboutModal} 
-                            className="mx-4 text-white hover:text-indigo-200 transition"
+                            className="mx-4 font-semibold text-xl text-white hover:text-indigo-200 transition"
                         >
                             Acerca de BiMo
                         </button>
                     </div>
-                    
-                    {/* Toggle de tema */}
                     <div className="flex items-center space-x-2">
-                        {/* Botón de Acerca de para móviles */}
                         {isMobile && (
                             <button 
                                 onClick={toggleAboutModal}
@@ -61,8 +61,6 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                                 Acerca
                             </button>
                         )}
-                        
-                        {/* Botón de modo automático */}
                         <button
                             onClick={toggleAutoTheme}
                             className={`hidden sm:flex items-center px-3 py-1 rounded-md text-xs mr-2 ${
@@ -71,17 +69,15 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                                     : "bg-gray-700 text-gray-300"
                             }`}
                         >
-                            <span className="mr-1">
+                            <span className="mr-1 font-semibold text-lg">
                                 {isAutoTheme ? "Auto" : "Manual"}
                             </span>
-                            <span className="text-xs">
+                            <span className="text-lg">
                                 {isAutoTheme ? "🌓" : "⚙️"}
                             </span>
                         </button>
-
                         {isMobile ? (
                             <div className="flex items-center">
-                                {/* Botón auto/manual para móviles */}
                                 <button
                                     onClick={toggleAutoTheme}
                                     className={`p-2 mr-2 rounded-full ${
@@ -90,12 +86,10 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                                             : "bg-gray-700 text-gray-300"
                                     }`}
                                 >
-                                    <span className="text-sm">
+                                    <span className="text-sm font-semibold">
                                         {isAutoTheme ? "🌓" : "⚙️"}
                                     </span>
                                 </button>
-                                
-                                {/* Toggle compacto para móviles */}
                                 <button 
                                     onClick={toggleTheme} 
                                     className={`p-2 rounded-full ${
@@ -110,7 +104,6 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                                 </button>
                             </div>
                         ) : (
-                            // Toggle completo para desktop
                             <label className="relative inline-flex items-center cursor-pointer border-2 rounded-full border-gray-500">
                                 <input 
                                     onChange={toggleTheme}
@@ -125,10 +118,8 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                     </div>
                 </div>
             </div>
-            
-            {/* Modal de Acerca de */}
             {isAboutOpen && (
-                <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 sm:pt-32">
+                <div className="fixed inset-0 z-50 flex items-start justify-start pt-24 sm:pt-32"> 
                     <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={toggleAboutModal}></div>
                     <div className={`relative max-w-lg w-full mx-4 p-6 rounded-lg shadow-lg ${isDarkMode ? "bg-[#1a1f3c]" : "bg-white"}`}>
                         <button 
@@ -148,7 +139,7 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                                 Esta plataforma busca preservar y difundir el patrimonio cultural a través de representaciones digitales precisas, facilitando el acceso al conocimiento histórico y arquitectónico.
                             </p>
                             <p>
-                                Versión 2.9.7 - Desarrollado con tecnologías web modernas como React, Three.js y TailwindCSS.
+                                Versión 2.10.3 - Desarrollado con tecnologías web modernas como React, Three.js y TailwindCSS.
                             </p>
                         </div>
                     </div>

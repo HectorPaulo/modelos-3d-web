@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, Link } from "react-router-dom"; 
 import Carousel from "../Components/Carrusel/Carousel";
 import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
@@ -12,6 +12,8 @@ import ImageInput from "../Components/ImageInput/ImageInput";
 import ComparisonModal from "../Components/Modal/ComparisionModal";
 import Loader from "../Components/Loader/Loader";
 import Alert from "../Components/Alert/Alert";
+import SplineModel from "../Components/Models/SplineModel";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -251,10 +253,7 @@ export default function Home({ isDarkMode }) {
         {
             name: "Bacija de barro",
             path: "/museum",
-            modelType: "obj",
-            modelPath: "/Models/Museum/output.obj",
-            texturePath: "/Models/Museum/baked_mesh_tex0.png",
-            normalMapPath: "/Models/Museum/baked_mesh_norm0.png"
+            ...getModelConfig("Bacija de barro")
         },
         {
             name: "Fuente de las 8 regiones",
@@ -373,44 +372,63 @@ export default function Home({ isDarkMode }) {
                     </div>
                 </div>
             </div>
+            <div className="flex flex-row-reverse items-start justify-end mt-10 sm:mt-20">
 
-            <div className="mt-10 sm:mt-20 px-4 mx-auto w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
-                <h2 className={`text-lg font-bold mb-4 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>Comparar fotografía de un monumento histórico</h2>
+                <div className="mt-10 sm:mt-20 w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
+                    <h2 className={`font-black mb-4 text-5xl ${isDarkMode ? "text-white" : "text-[#141729]"}`}>Comparar fotografía de un monumento histórico</h2>
 
-                <ImageInput 
-                    value={selectedImage}
-                    onChange={handleImageChange}
-                    maxSize={10}
-                    label="Sube una imagen"
-                    accept="image/png, image/jpeg"
-                    aspectRatio="16/9"
-                />
+                    <ImageInput 
+                        value={selectedImage}
+                        onChange={handleImageChange}
+                        maxSize={10}
+                        label="Sube una imagen"
+                        accept="image/png, image/jpeg"
+                        aspectRatio="16/9"
+                        />
 
-                {selectedImage && (
-                    <p className={`mt-4 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}>
-                        Imagen seleccionada: {selectedImage.name} ({(selectedImage.size / 1024).toFixed(2)} KB)
-                    </p>
-                )}
-                
-                {errorMessage && (
-                    <p className="mt-2 text-red-500">{errorMessage}</p>
-                )}
-                
-                <div className="flex justify-center">
-                    <button
-                        onClick={handleSearchModel}
-                        disabled={!selectedImage || isLoading}
-                        className={`my-2 rounded-md p-2 font-semibold text-lg w-xs mt-5 border-b-4 border-l-4 border-t-2 border-r-2 cursor-pointer hover:bg-gradient-to-b hover:from-[#343d74] hover:to-[#3e4dac] hover:scale-105 hover:text-white
-                            ${isDarkMode ? "text-white" : "text-black"} border-[#343d74]
-                            ${(!selectedImage || isLoading) ? " cursor-not-allowed" : ""}
-                        `}
-                    >
-                        {isLoading ? "Procesando..." : "Buscar modelo"}
-                    </button>
+                    {selectedImage && (
+                        <p className={`mt-4 ${isDarkMode ? "text-gray-300" : "text-gray-800"}`}>
+                            Imagen seleccionada: {selectedImage.name} ({(selectedImage.size / 1024).toFixed(2)} KB)
+                        </p>
+                    )}
+                    
+                    {errorMessage && (
+                        <p className="mt-2 text-red-500">{errorMessage}</p>
+                    )}
+                    
+                    <div className="flex justify-center">
+                        <button
+                            onClick={handleSearchModel}
+                            disabled={!selectedImage || isLoading}
+                            className={`my-2 rounded-md p-2 font-semibold text-lg w-xs mt-5 border-b-4 border-l-4 border-t-2 border-r-2 cursor-pointer hover:bg-gradient-to-b hover:from-[#343d74] hover:to-[#3e4dac] hover:scale-105 hover:text-white
+                                ${isDarkMode ? "text-white" : "text-black"} border-[#343d74]
+                                ${(!selectedImage || isLoading) ? " cursor-not-allowed" : ""}
+                                `}
+                                >
+                            {isLoading ? "Procesando..." : "Buscar modelo"}
+                        </button>
+                    </div>
                 </div>
+                        
+                        <div
+                            className="cursor-pointer w-1/2 h-full" // Ajusta el tamaño según sea necesario
+                            onClick={() => navigate("/library")} // Redirigir a /library al hacer clic
+                        >
+                            <SplineModel isDarkMode={isDarkMode}/>
+                        </div>
             </div>
             <div ref={contentRef}>
                 <div className={`mx-auto mt-0 max-w-7xl px-4 py-6 sm:py-12 sm:px-6 lg:px-8`}>
+                    {/* Contenedor del título y el modelo de Spline */}
+                    <div className="flex justify-between items-center mb-6">
+                        {/* Título */}
+                        <h2 className={`text-6xl font-bold ${isDarkMode ? "text-white" : "text-[#2a3159]"}`}>
+                            Monumentos destacados
+                        </h2>
+
+                    </div>
+
+                    {/* Grid de monumentos */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 place-items-center">
                         {cards.map((card, index) => (
                             <div
@@ -418,12 +436,12 @@ export default function Home({ isDarkMode }) {
                                 ref={(el) => (cardRefs.current[index] = el)}
                                 className={`w-full max-w-md relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer mx-auto ${
                                     isDarkMode 
-                                        ? "bg-[#141729] border-gray-700 mt-6 sm:mt-10 md:mt-20" 
+                                        ? "bg-[#141729] border-gray-700" 
                                         : "bg-white/30 border-[#aeceb2]"
                                 }`}
-                                style={{ 
+                                style={{
                                     height: isMobile ? "100px" : "150px",
-                                    boxShadow: isDarkMode ? '0 4px 6px -1px rgba(0, 0, 0, 0.5)' : 'none'
+                                    boxShadow: isDarkMode ? '0 4px 6px -1px rgba(0, 0, 0, 0.5)' : 'none',
                                 }}
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={() => handleMouseLeave(index)}
@@ -432,9 +450,9 @@ export default function Home({ isDarkMode }) {
                                 <div className="absolute top-2 right-2 z-30 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
                                     {card.modelType === 'stl' ? 'STL' : 'OBJ'}
                                 </div>
-                                
+
                                 <div className="h-full w-full">
-                                    <MuseumModelCanvas 
+                                    <MuseumModelCanvas
                                         modelPath={card.modelPath}
                                         modelType={card.modelType}
                                         texturePath={card.texturePath}
@@ -443,8 +461,10 @@ export default function Home({ isDarkMode }) {
                                         autoRotate={true}
                                         background={isDarkMode ? "#141729" : "transparent"}
                                     />
-                                    <div className={`absolute bottom-0 left-0 w-full py-2 text-center font-semibold text-2xl 
-                                        ${isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"}`}
+                                    <div
+                                        className={`absolute bottom-0 left-0 w-full py-2 text-center font-semibold text-2xl ${
+                                            isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"
+                                        }`}
                                     >
                                         {card.name}
                                     </div>

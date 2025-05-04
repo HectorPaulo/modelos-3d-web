@@ -227,7 +227,7 @@ const ImageInput = ({
       
       <div 
         className={`relative border-2 border-dashed rounded-lg p-4 transition-colors cursor-pointer
-          ${isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300'}
+          ${isDragging ? 'border-blue-500 bg-blue-50' : 'border-blue-950'}
           ${disabled ? 'opacity-60 cursor-not-allowed' : 'hover:bg-gray-100'}
           ${error ? 'border-red-500' : ''}
         `}

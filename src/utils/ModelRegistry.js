@@ -23,11 +23,12 @@ const modelRegistry = {
     modelPath: "/Models/Museum/output.obj",
     texturePath: "/Models/Museum/baked_mesh_tex0.png",
     normalMapPath: "/Models/Museum/baked_mesh_norm0.png",
+    color: "#8b451389", // color marrón como respaldo
     camera: {
-      distance: 1.5,
-      minDistance: 1,
-      maxDistance: 3,
-      position: [0, 0, 1.5] // Acercado como solicitaste
+      distance: 0.5, // Mucho más cerca que antes
+      minDistance: 0.1,
+      maxDistance: 1.0,
+      position: [0, 0, 1] // Mucho más cerca
     }
   },
   "Cruz": {
@@ -35,15 +36,15 @@ const modelRegistry = {
     modelPath: "/Models/Cruz/output.obj",
     color: "#963f3f",
     camera: {
-      distance: 40,
+      distance: 80,
       minDistance: 15,
-      maxDistance: 60,
-      position: [0, -15, 40] // Alejado considerablemente
+      maxDistance: 90,
+      position: [0, -15, 80] 
     }
   },
   "Quiosco": {
     modelType: "obj",
-    modelPath: "/Models/Kiosko/output.obj",  // Mantenemos la ruta del archivo igual
+    modelPath: "/Models/Kiosko/output.obj",
     color: "#666f56",
     camera: {
       distance: 35,

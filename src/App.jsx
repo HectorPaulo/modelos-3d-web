@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Library from './pages/Library';
 import Navbar from './Components/Navbar/navbar';
 import React, { useState, useEffect } from 'react';
 import Museum from './pages/Museum';
@@ -102,6 +103,7 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
+          <Route path="/library" element={<Library isDarkMode={isDarkMode} />} />
           <Route path="/museum/:modelName" element={<Museum isDarkMode={isDarkMode} />} />
           <Route path="/museum" element={<Museum isDarkMode={isDarkMode} />} />
         </Routes>
