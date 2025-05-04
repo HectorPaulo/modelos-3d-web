@@ -23,7 +23,7 @@ const modelRegistry = {
     modelPath: "/Models/Museum/output.obj",
     texturePath: "/Models/Museum/baked_mesh_tex0.png",
     normalMapPath: "/Models/Museum/baked_mesh_norm0.png",
-    color: "#8b451389", // color marrón como respaldo
+    color: "#8b4513", // Marrón válido
     camera: {
       distance: 0.5, // Mucho más cerca que antes
       minDistance: 0.1,
@@ -31,21 +31,53 @@ const modelRegistry = {
       position: [0, 0, 1] // Mucho más cerca
     }
   },
-  "Cruz": {
+  "Cruz de piedra": {
     modelType: "obj",
     modelPath: "/Models/Cruz/output.obj",
     color: "#963f3f",
     camera: {
-      distance: 80,
-      minDistance: 15,
-      maxDistance: 90,
-      position: [0, -15, 80] 
+      distance: 10, // Reduce la distancia para acercar la cámara
+      minDistance: 5,
+      maxDistance: 20,
+      position: [0, 0, 10] // Ajusta la posición de la cámara
     }
   },
   "Quiosco": {
     modelType: "obj",
     modelPath: "/Models/Kiosko/output.obj",
     color: "#666f56",
+    camera: {
+      distance: 35,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -2, 35] 
+    }
+  },
+  "Homenaje a Porfirio Diaz": {
+    modelType: "obj",
+    modelPath: "/Models/HomenajePorfirioDiaz/output.obj",
+    color: "#666f56",
+    camera: {
+      distance: 35,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -2, 35] 
+    }
+  },
+  "Iglesia de Jalatlaco": {
+    modelType: "stl",
+    modelPath: "/Models/IglesiaJalatlaco/output.stl",
+    color: "#979039",
+    camera: {
+      distance: 35,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -2, 35] 
+    }
+  },
+  "Exconvento de Santo Domingo": {
+    modelType: "obj",
+    modelPath: "/Models/Exconvento/output.obj",
     camera: {
       distance: 35,
       minDistance: 15,
@@ -60,7 +92,22 @@ const modelAliases = {
   "quiosco": "Quiosco",
   "fuente de las 8 regiones": "Fuente de las 8 regiones",
   "fuente de las ocho regiones": "Fuente de las 8 regiones",
-  "fuente regiones": "Fuente de las 8 regiones"
+  "fuente regiones": "Fuente de las 8 regiones",
+  "Cruz": "Cruz de piedra",
+  "cruz": "Cruz de piedra",
+  "cruz de piedra": "Cruz de piedra",
+  "homenaje a porfirio diaz": "Homenaje a Porfirio Diaz",
+  "homenaje porfirio diaz": "Homenaje a Porfirio Diaz",
+  "homenaje": "Homenaje a Porfirio Diaz",
+  "iglesia de jalatlaco": "Iglesia de Jalatlaco",
+  "iglesia jalatlaco": "Iglesia de Jalatlaco",
+  "iglesia": "Iglesia de Jalatlaco",
+  "exconvento de santo domingo": "Exconvento de Santo Domingo",
+  "exconvento santo domingo": "Exconvento de Santo Domingo",
+  "exconvento": "Exconvento de Santo Domingo",
+  "bajia de barro": "Bacija de barro",
+  "bacia de barro": "Bacija de barro",
+  "bacia barro": "Bacija de barro",
 };
 
 /**
@@ -70,16 +117,16 @@ const modelAliases = {
  */
 export const getModelConfig = (modelName) => {
   if (!modelName) return null;
-  
-  // Buscar en alias primero
+
   const normalizedName = modelName.toLowerCase().trim();
   for (const [alias, realName] of Object.entries(modelAliases)) {
     if (normalizedName.includes(alias)) {
+      console.log(`Alias encontrado: ${alias} -> ${realName}`);
       return modelRegistry[realName];
     }
   }
-  
-  // Si no hay alias, buscar directamente
+
+  console.log(`Modelo buscado: ${modelName}`);
   return modelRegistry[modelName] || null;
 };
 

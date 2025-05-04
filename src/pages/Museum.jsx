@@ -39,6 +39,16 @@ const Museum = ({ isDarkMode }) => {
     return () => clearTimeout(timer);
   }, [decodedName]);
 
+  useEffect(() => {
+    const config = getModelConfig(decodedName);
+    console.log("Configuración del modelo cargada:", config);
+    if (config) {
+      setModelConfig(config);
+    } else {
+      setModelConfig({});
+    }
+  }, [decodedName]);
+
   if (isLoading) {
     return (
       <div className={`flex items-center justify-center h-screen w-screen ${

@@ -49,6 +49,7 @@ function Model({ modelPath, modelType, texturePath, normalMapPath, color }) {
     } else if (modelType === 'stl') {
       const stlLoader = new STLLoader();
       stlLoader.load(modelPath, (geometry) => {
+        console.log("STL cargado correctamente:", geometry);
         const material = new MeshStandardMaterial({ 
           color: new Color(color || "#808080"),
           roughness: 0.5,
@@ -56,6 +57,8 @@ function Model({ modelPath, modelType, texturePath, normalMapPath, color }) {
         });
         const mesh = new Mesh(geometry, material);
         setModel(mesh);
+      }, undefined, (error) => {
+        console.error("Error al cargar el STL:", error);
       });
     }
   }, [modelPath, modelType, texturePath, normalMapPath, color]);
@@ -102,7 +105,7 @@ function CameraController({ cameraConfig }) {
       enablePan={true}
       enableRotate={true}
       autoRotate={false}
-      autoRotateSpeed={1}
+      autoRotateSpeed={0.2}
       makeDefault
     />
   );
@@ -159,3 +162,12 @@ function MuseumModelCanvas({
 }
 
 export default MuseumModelCanvas;
+
+// Example usage
+<MuseumModelCanvas 
+  modelPath="/Models/IglesiaJalatlaco/output.stl"
+  modelType="stl"
+  color="#979039"
+  autoRotate={true}
+  background="#141729"
+/>

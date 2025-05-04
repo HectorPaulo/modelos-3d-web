@@ -269,6 +269,21 @@ export default function Home({ isDarkMode }) {
             name: "Quiosco",
             path: "/museum",
             ...getModelConfig("Quiosco")
+        },
+        {
+            name: "Homenaje a Porfirio Díaz",
+            path: "/museum",
+            ...getModelConfig("Homenaje a Porfirio Díaz")
+        },
+        {
+            name: "Iglesia de Jalatlaco",
+            path: "/museum",
+            ...getModelConfig("Iglesia de Jalatlaco")
+        },
+        {
+            name: "Exconvento de Santo Domingo",
+            path: "/museum",
+            ...getModelConfig("Exconvento de Santo Domingo")
         }
     ];
 
