@@ -41,22 +41,22 @@ const modelRegistry = {
       position: [0, -15, 40] // Alejado considerablemente
     }
   },
-  "Kiosko": {
+  "Quiosco": {
     modelType: "obj",
-    modelPath: "/Models/Kiosko/output.obj",
+    modelPath: "/Models/Kiosko/output.obj",  // Mantenemos la ruta del archivo igual
     color: "#666f56",
     camera: {
       distance: 35,
       minDistance: 15,
       maxDistance: 60,
-      position: [0, -2, 35] // Alejado considerablemente
+      position: [0, -2, 35] 
     }
   }
 };
 
 const modelAliases = {
-  "kiosko": "Kiosko",
-  "quiosco": "Kiosko",
+  "kiosko": "Quiosco",
+  "quiosco": "Quiosco",
   "fuente de las 8 regiones": "Fuente de las 8 regiones",
   "fuente de las ocho regiones": "Fuente de las 8 regiones",
   "fuente regiones": "Fuente de las 8 regiones"

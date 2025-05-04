@@ -267,9 +267,9 @@ export default function Home({ isDarkMode }) {
             ...getModelConfig("Cruz")
         },
         {
-            name: "Kiosko",
+            name: "Quiosco",
             path: "/museum",
-            ...getModelConfig("Kiosko")
+            ...getModelConfig("Quiosco")
         }
     ];
 

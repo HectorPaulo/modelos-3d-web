@@ -23,8 +23,8 @@ const ComparisonModal = ({ isOpen, onClose, userImage, monumentName, navigateToM
         
         // Búsqueda específica para kiosko/quiosco con diferentes variantes
         if (normalizedName.includes('kiosko') || normalizedName.includes('quiosco')) {
-          config = getModelConfig("Kiosko");
-          foundModelName = "Kiosko";
+          config = getModelConfig("Quiosco"); // Cambiado de "Kiosko" a "Quiosco"
+          foundModelName = "Quiosco"; // Cambiado de "Kiosko" a "Quiosco"
         } 
         // Búsqueda específica para fuente de las 8 regiones
         else if (normalizedName.includes('fuente') && (normalizedName.includes('8') || normalizedName.includes('ocho') || normalizedName.includes('region'))) {
