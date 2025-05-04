@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 import { useResponsiveContext } from "../../context/ResponsiveContext";
@@ -6,6 +6,7 @@ import { useResponsiveContext } from "../../context/ResponsiveContext";
 const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
     const { isMobile } = useResponsiveContext();
     const navbarRef = useRef(null);
+    const [isAboutOpen, setIsAboutOpen] = useState(false);
 
     useEffect(() => {
         gsap.fromTo(
@@ -15,13 +16,17 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
         );
     }, []);
 
+    const toggleAboutModal = () => {
+        setIsAboutOpen(!isAboutOpen);
+    }
+
     return (
         <nav ref={navbarRef} className={`sticky top-0 z-50 ${
-            isDarkMode ? "bg-[#141729]" : "bg-gray-900"
+            isDarkMode ? "bg-[#141729]" : "bg-[#292E50]"
         }`}>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-2">
                 <div className="relative flex h-14 sm:h-16 items-center justify-between">
-                    {/* Logo */}
+                    {/* Logo y navegación principal */}
                     <div className="flex items-center">
                         <Link to="/" className="flex items-center">
                             <img
@@ -30,13 +35,33 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                                 alt="Modelos 3D"
                             />
                             <span className="ml-2 text-white font-medium hidden sm:block">
-                                Universidad La Salle Oaxaca | Biblioteca de Modelos 3D
+                                Universidad La Salle Oaxaca | Biblioteca de Monumentos
                             </span>
                         </Link>
                     </div>
                     
+                    {/* Enlaces de navegación */}
+                    <div className="hidden md:flex items-center">
+                        <button 
+                            onClick={toggleAboutModal} 
+                            className="mx-4 text-white hover:text-indigo-200 transition"
+                        >
+                            Acerca de BiMo
+                        </button>
+                    </div>
+                    
                     {/* Toggle de tema */}
                     <div className="flex items-center space-x-2">
+                        {/* Botón de Acerca de para móviles */}
+                        {isMobile && (
+                            <button 
+                                onClick={toggleAboutModal}
+                                className="p-2 mr-2 rounded text-white text-sm hover:bg-indigo-700"
+                            >
+                                Acerca
+                            </button>
+                        )}
+                        
                         {/* Botón de modo automático */}
                         <button
                             onClick={toggleAutoTheme}
@@ -100,6 +125,35 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                     </div>
                 </div>
             </div>
+            
+            {/* Modal de Acerca de */}
+            {isAboutOpen && (
+                <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 sm:pt-32">
+                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={toggleAboutModal}></div>
+                    <div className={`relative max-w-lg w-full mx-4 p-6 rounded-lg shadow-lg ${isDarkMode ? "bg-[#1a1f3c]" : "bg-white"}`}>
+                        <button 
+                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700" 
+                            onClick={toggleAboutModal}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <h2 className={`text-2xl font-bold mb-4 ${isDarkMode ? "text-white" : "text-gray-800"}`}>Acerca de BiMo</h2>
+                        <div className={`${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+                            <p className="mb-4">
+                                BiMo (Biblioteca de Monumentos) es un proyecto desarrollado para la Universidad La Salle Oaxaca que permite visualizar y explorar modelos 3D de monumentos históricos y culturales.
+                            </p>
+                            <p className="mb-4">
+                                Esta plataforma busca preservar y difundir el patrimonio cultural a través de representaciones digitales precisas, facilitando el acceso al conocimiento histórico y arquitectónico.
+                            </p>
+                            <p>
+                                Versión 1.0 - Desarrollado con tecnologías web modernas como React, Three.js y TailwindCSS.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </nav>
     );
 };

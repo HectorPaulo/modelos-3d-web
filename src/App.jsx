@@ -105,7 +105,12 @@ function App() {
           <Route path="/museum/:modelName" element={<Museum isDarkMode={isDarkMode} />} />
           <Route path="/museum" element={<Museum isDarkMode={isDarkMode} />} />
         </Routes>
-        <Footer />
+        <Footer
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
+        toggleAutoTheme={toggleAutoTheme}
+        isAutoTheme={isAutoTheme}
+        />
       </Router>
     </ResponsiveProvider>
   );
