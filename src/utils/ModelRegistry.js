@@ -29,6 +29,28 @@ const modelRegistry = {
       maxDistance: 0.5,
       position: [1, 2, 0.5]
     }
+  },
+  "Cruz": {
+    modelType: "obj",
+    modelPath: "/Models/Cruz/output.obj",
+    color: "#964B00", // Marrón oscuro para simular madera
+    camera: {
+      distance: 15,
+      minDistance: 5,
+      maxDistance: 30,
+      position: [0, 0, 15]
+    }
+  },
+  "Kiosko": {
+    modelType: "obj",
+    modelPath: "/Models/Kiosko/output.obj",
+    color: "#556B2F", // Verde oliva oscuro
+    camera: {
+      distance: 20,
+      minDistance: 10,
+      maxDistance: 40,
+      position: [0, 2, 20]
+    }
   }
 };
 

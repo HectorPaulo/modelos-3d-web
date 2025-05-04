@@ -255,6 +255,7 @@ const MuseumModelCanvas = ({
 }) => {
   const [hasError, setHasError] = useState(false);
   const [contextLost, setContextLost] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   
   // Valores predeterminados para la cámara si no se especifican
   const defaultCamera = {
@@ -285,6 +286,20 @@ const MuseumModelCanvas = ({
     };
   }, []);
   
+  useEffect(() => {
+    // Al cargar el modelo
+    const handleLoadError = (error) => {
+      console.error("Error cargando modelo:", error);
+      setLoadError(true);
+    };
+    
+    // Agregar try/catch al cargar el modelo
+  }, [modelPath]);
+
+  if (loadError) {
+    return <div className="text-red-500">Error al cargar el modelo</div>;
+  }
+
   const handleError = (error) => {
     console.error("Error en el canvas WebGL:", error);
     setHasError(true);

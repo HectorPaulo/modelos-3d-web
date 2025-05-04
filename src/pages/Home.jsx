@@ -63,9 +63,17 @@ export default function Home({ isDarkMode }) {
             const response = await fetch('https://monumentos-historicos-e45c66f49b57.herokuapp.com/predict', {
                 method: 'POST',
                 body: formData,
+                // Añadir configuración CORS si es necesario
+                credentials: 'omit',
             });
             
             if (!response.ok) {
+                console.error('Error Response:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: Object.fromEntries([...response.headers]),
+                    body: await response.text()
+                });
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
             }
             
@@ -106,37 +114,37 @@ export default function Home({ isDarkMode }) {
             { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.5 }
         );
 
-        // Animaciones para los rectángulos decorativos
+        // Animaciones para los rectángulos decorativos - ahora 4 veces más lentas
         // Rectángulos izquierdos - animación de entrada
         gsap.fromTo(
             leftRect1Ref.current,
             { height: 0, opacity: 0 },
-            { height: "100vh", opacity: 1, duration: 1.2, ease: "power3.out" }
+            { height: "100vh", opacity: 1, duration: 4.8, ease: "power3.out" }
         );
         
         gsap.fromTo(
             leftRect2Ref.current,
             { height: 0, opacity: 0 },
-            { height: "99vh", opacity: 1, duration: 1.5, ease: "power3.out", delay: 0.2 }
+            { height: "99vh", opacity: 1, duration: 6.0, ease: "power3.out", delay: 0.8 }
         );
         
         // Rectángulos derechos - animación de entrada
         gsap.fromTo(
             rightRect1Ref.current,
             { height: 0, opacity: 0 },
-            { height: "100vh", opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.3 }
+            { height: "100vh", opacity: 1, duration: 4.8, ease: "power3.out", delay: 1.2 }
         );
         
         gsap.fromTo(
             rightRect2Ref.current,
             { height: 0, opacity: 0 },
-            { height: "110vh", opacity: 1, duration: 1.5, ease: "power3.out", delay: 0.5 }
+            { height: "110vh", opacity: 1, duration: 6.0, ease: "power3.out", delay: 2.0 }
         );
         
-        // Animaciones continuas para cada rectángulo
+        // Animaciones continuas para cada rectángulo - ahora 4 veces más lentas
         gsap.to(leftRect1Ref.current, {
             height: "150vh", 
-            duration: 2,
+            duration: 8, // 4x más lento
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
@@ -144,29 +152,29 @@ export default function Home({ isDarkMode }) {
         
         gsap.to(leftRect2Ref.current, {
             height: "140vh",
-            duration: 2.5,
+            duration: 10, // 4x más lento
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            delay: 0.5
+            delay: 2.0
         });
         
         gsap.to(rightRect1Ref.current, {
             height: "150vh",
-            duration: 2.3,
+            duration: 9.2, // 4x más lento
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            delay: 0.3
+            delay: 1.2
         });
         
         gsap.to(rightRect2Ref.current, {
             height: "140vh",
-            duration: 2.8,
+            duration: 11.2, // 4x más lento
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            delay: 0.7
+            delay: 2.8
         });
 
         const handleScroll = () => {
@@ -235,16 +243,26 @@ export default function Home({ isDarkMode }) {
             name: "Fuente de las 8 regiones",
             path: "/museum",
             ...getModelConfig("Fuente de las 8 regiones")
+        },
+        {
+            name: "Cruz",
+            path: "/museum",
+            ...getModelConfig("Cruz")
+        },
+        {
+            name: "Kiosko",
+            path: "/museum",
+            ...getModelConfig("Kiosko")
         }
     ];
 
     return (
         <div className={`min-h-screen ${isDarkMode ? "bg-black text-gray-100" : " text-gray-200"} relative`}>
             
-            {/* Rectángulos verticales decorativos - Izquierda */}
+            {/* Rectángulos verticales decorativos - Izquierda - ahora solo visibles en pantallas md+ */}
             <div 
                 ref={leftRect1Ref}
-                className="absolute left-6 bottom-0 w-24 z-[-1] origin-bottom rounded-t-full" 
+                className="hidden md:block absolute left-6 bottom-0 w-24 z-[-1] origin-bottom rounded-t-full" 
                 style={{
                     background: "linear-gradient(to top, #292E50)"
                 }}
@@ -252,16 +270,16 @@ export default function Home({ isDarkMode }) {
             
             <div 
                 ref={leftRect2Ref}
-                className="absolute left-24 top-0 w-20 z-[-1] origin-top rounded-b-full" 
+                className="hidden md:block absolute left-24 top-0 w-20 z-[-1] origin-top rounded-b-full" 
                 style={{
                     background: "linear-gradient(to bottom, #A62932)"
                 }}
             ></div>
             
-            {/* Rectángulos verticales decorativos - Derecha (orden invertido) */}
+            {/* Rectángulos verticales decorativos - Derecha - ahora solo visibles en pantallas md+ */}
             <div 
                 ref={rightRect1Ref}
-                className="absolute right-6 bottom-0 w-24 z-[-1] origin-bottom rounded-t-full" 
+                className="hidden md:block absolute right-6 bottom-0 w-24 z-[-1] origin-bottom rounded-t-full" 
                 style={{
                     background: "linear-gradient(to top, #292E50)"
                 }}
@@ -269,7 +287,7 @@ export default function Home({ isDarkMode }) {
             
             <div 
                 ref={rightRect2Ref}
-                className="absolute right-24 top-0 w-20 z-[-1] origin-top rounded-b-full"
+                className="hidden md:block absolute right-24 top-0 w-20 z-[-1] origin-top rounded-b-full"
                 style={{
                     background: "linear-gradient(to bottom, #A62932)"
                 }}
@@ -298,8 +316,8 @@ export default function Home({ isDarkMode }) {
                 ref={backgroundRef}
                 className={`${
                     isDarkMode 
-                        ? "relative lg:h-[670px] md:h-[500px] h-70 transition-all duration-200" 
-                        : "relative lg:h-[900px] md:h-[550px] h-100 pt-20 transition-all duration-200 overflow-hidden rounded-b-full"
+                        ? "relative lg:h-[670px] md:h-[500px] h-[400px] transition-all duration-200" 
+                        : "relative lg:h-[900px] md:h-[550px] h-[450px] pt-10 sm:pt-20 transition-all duration-200 overflow-hidden rounded-b-full"
                 } `}
                 style={{
                     transformOrigin: "center center",
@@ -339,7 +357,7 @@ export default function Home({ isDarkMode }) {
                 </div>
             </div>
 
-            <div className="mt-20 px-4 mx-auto w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
+            <div className="mt-10 sm:mt-20 px-4 mx-auto w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
                 <h2 className={`text-lg font-bold mb-4 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>Comparar fotografía de un monumento histórico</h2>
 
                 <ImageInput 
@@ -375,7 +393,7 @@ export default function Home({ isDarkMode }) {
                 </div>
             </div>
             <div ref={contentRef}>
-                <div className={`mx-auto mt-0 max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8`}>
+                <div className={`mx-auto mt-0 max-w-7xl px-4 py-6 sm:py-12 sm:px-6 lg:px-8`}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 place-items-center">
                         {cards.map((card, index) => (
                             <div
@@ -383,7 +401,7 @@ export default function Home({ isDarkMode }) {
                                 ref={(el) => (cardRefs.current[index] = el)}
                                 className={`w-full max-w-md relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer mx-auto ${
                                     isDarkMode 
-                                        ? "bg-[#141729] border-gray-700 mt-10 sm:mt-20 md:mt-40" 
+                                        ? "bg-[#141729] border-gray-700 mt-6 sm:mt-10 md:mt-20" 
                                         : "bg-white/30 border-[#aeceb2]"
                                 }`}
                                 style={{ 
