@@ -112,7 +112,7 @@ export default function Library({ isDarkMode }) {
                         color={card.color}
                         autoRotate={true}
                         background={isDarkMode ? "#141729" : "transparent"}
-                        scale={[0.05, 0.05, 0.05]} // Escala ajustada
+                        scale={[0.05, 0.05, 0.05]} // Escala ajustada para las tarjetas
                     />
                 </div>
                 <div className={`absolute bottom-0 left-0 w-full py-2 text-center font-semibold text-xl 
@@ -127,7 +127,7 @@ export default function Library({ isDarkMode }) {
     return (
         <div className={`min-h-screen ${isDarkMode ? "bg-black text-gray-100" : "bg-gray-50 text-gray-800"} py-10`}>
             <div className="container mx-auto px-4">
-                <h1 className={`text-6npm runxl sm:text-4xl font-bold text-center mb-35 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
+                <h1 className={`text-6xl sm:text-4xl font-bold text-center mb-35 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
                     Biblioteca de Monumentos
                 </h1>
                 <Carousel />

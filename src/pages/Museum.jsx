@@ -109,6 +109,7 @@ const Museum = ({ isDarkMode }) => {
             autoRotate={false}
             background={isDarkMode ? "#141729" : "transparent"}
             cameraConfig={modelConfig?.camera}
+            scale={[1, 1, 1]} // Escala más grande para la página /museum
           />
         </div>
       </div>

@@ -8,14 +8,14 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { Mesh, MeshStandardMaterial, Color } from "three";
 
 // Componente para el modelo 3D
-function Model({ modelPath, modelType, texturePath, normalMapPath, color }) {
+function Model({ modelPath, modelType, texturePath, normalMapPath, color, scale }) {
   const [model, setModel] = useState(null);
   const meshRef = useRef();
 
   useEffect(() => {
     if (modelType === 'obj') {
       const objLoader = new OBJLoader();
-      const textureLoader = new TextureLoader(); // Usa TextureLoader directamente
+      const textureLoader = new TextureLoader();
 
       objLoader.load(modelPath, (obj) => {
         obj.traverse((child) => {
@@ -27,11 +27,11 @@ function Model({ modelPath, modelType, texturePath, normalMapPath, color }) {
             });
 
             if (texturePath) {
-              const texture = textureLoader.load(texturePath); // Carga la textura
+              const texture = textureLoader.load(texturePath);
               material.map = texture;
             }
             if (normalMapPath) {
-              const normalMap = textureLoader.load(normalMapPath); // Carga el mapa normal
+              const normalMap = textureLoader.load(normalMapPath);
               material.normalMap = normalMap;
             }
 
@@ -56,7 +56,7 @@ function Model({ modelPath, modelType, texturePath, normalMapPath, color }) {
 
   if (!model) return null;
 
-  return <primitive ref={meshRef} object={model} scale={[0.1, 0.1, 0.1]} />; // Ajusta la escala según sea necesario
+  return <primitive ref={meshRef} object={model} scale={scale} />; // Aplica la escala aquí
 }
 
 // Componentes para controlar la cámara

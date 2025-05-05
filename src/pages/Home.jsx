@@ -379,7 +379,7 @@ export default function Home({ isDarkMode }) {
                                 delay={400}
                                 animateBy="letters"
                                 direction="bottom"
-                                className={`text-gray-200 mt-30 mb-40 text-5xl sm:text-5xl lg:text-9xl font-black ${
+                                className={`text-gray-200 mt-30 text-5xl sm:text-5xl lg:text-9xl font-black ${
                                     isDarkMode ? "mt-20 sm:mt-40" : ""
                                 }`}
                             />
@@ -387,8 +387,8 @@ export default function Home({ isDarkMode }) {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-row-reverse items-start justify-center mt-10 sm:mt-20">
-                <div className="mt-10 sm:mt-20 w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
+            <div className="flex flex-row-reverse items-start justify-center sm:mt-20 pb-10">
+                <div className=" sm:mt-20 w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
                     <h2 className={`font-black mb-4 text-5xl ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
                         Comparar fotografía de un monumento histórico
                     </h2>
