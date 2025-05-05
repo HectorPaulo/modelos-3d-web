@@ -348,7 +348,7 @@ export default function Home({ isDarkMode }) {
                 ref={backgroundRef}
                 className={`${
                     isDarkMode 
-                        ? "relative lg:h-[670px] md:h-[500px] h-[400px] transition-all duration-200" 
+                        ? "relative pt-50 lg:h-[500px] md:h-[500px] h-[400px] transition-all duration-200" 
                         : "relative lg:h-[900px] md:h-[550px] h-[450px] pt-10 sm:pt-20 transition-all duration-200 overflow-hidden rounded-b-full"
                 } `}
                 style={{
@@ -376,10 +376,10 @@ export default function Home({ isDarkMode }) {
                         <div className="flex flex-col items-center justify-center space-y-25">
                             <BlurText
                                 text="BiMo"
-                                delay={400}
+                                delay={200}
                                 animateBy="letters"
                                 direction="bottom"
-                                className={`text-gray-200 mt-30 text-5xl sm:text-5xl lg:text-9xl font-black ${
+                                className={`text-gray-200 mt-30 text-6xl sm:text-5xl lg:text-9xl font-black ${
                                     isDarkMode ? "mt-20 sm:mt-40" : ""
                                 }`}
                             />
