@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate, Link } from "react-router-dom"; 
-// import Carousel from "../Components/Carrusel/Carousel";
 import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
 import MuseumModelCanvas from "../Components/Museum/MuseumModel"; 
@@ -28,7 +27,6 @@ export default function Home({ isDarkMode }) {
     const cardRefs = useRef([]);
     const imgRefs = useRef([]);
     
-    // Referencias para los rectángulos decorativos
     const leftRect1Ref = useRef(null);
     const leftRect2Ref = useRef(null);
     const rightRect1Ref = useRef(null);
@@ -60,9 +58,8 @@ export default function Home({ isDarkMode }) {
         setErrorMessage(null);
         
         try {
-            // Crear un FormData y adjuntar la imagen con el nombre de campo 'file'
             const formData = new FormData();
-            formData.append('file', selectedImage); // Cambiar 'image' por 'file'
+            formData.append('file', selectedImage); 
             
             console.log("Enviando solicitud a la API...");
             
@@ -294,9 +291,9 @@ export default function Home({ isDarkMode }) {
             {/* Rectángulos verticales decorativos - Izquierda - ahora solo visibles en pantallas md+ */}
             <div 
                 ref={leftRect1Ref}
-                className="hidden md:block absolute left-6 bottom-0 w-24 z-[-1] origin-bottom rounded-t-full" 
+                className="hidden md:block absolute left-6 bottom-0 w-24 z-[-1] origin-botto</div>m rounded-t-full" 
                 style={{
-                    background: "linear-gradient(to top, #292E50)"
+                    background: "linear-gradient(to top, #2</div>92E50)"
                 }}
             ></div>
             

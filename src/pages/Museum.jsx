@@ -11,7 +11,6 @@ const Museum = ({ isDarkMode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [modelConfig, setModelConfig] = useState(null);
   
-  // Asegurar que la página comience en la parte superior
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -109,7 +108,7 @@ const Museum = ({ isDarkMode }) => {
             autoRotate={false}
             background={isDarkMode ? "#141729" : "transparent"}
             cameraConfig={modelConfig?.camera}
-            scale={[1, 1, 1]} // Escala más grande para la página /museum
+            scale={[1, 1, 1]} 
           />
         </div>
       </div>

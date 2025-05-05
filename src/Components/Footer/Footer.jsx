@@ -17,7 +17,7 @@ const Footer = ({isDarkMode}) => {
                 <div className="md:flex md:justify-between">
                   <div className="mb-6 md:mb-0">
                       <a href="https://flowbite.com/" className="flex items-center">
-                          <img src="/Assets/vite.png" className="h-8 me-3" alt="Logo de la app" />
+                          <img src="/Assets/4_IMAGOTIPO_LASALLE_OAXACA_CALADO-SIN FONDO - Editado.png" className="h-10 m-3" alt="Logo de la app" />
                           <span className={`sm:text-lg md:text-xl self-center lg:text-2xl font-semibold whitespace-nowrap ${isDarkMode ? "text-white" : "text-gray-100"}`}>
                             Biblioteca de modelos 3D
                           </span>

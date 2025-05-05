@@ -1,7 +1,7 @@
 /**
- * Registrador de modelos 3D
+ * Registrador de modelos
  * 
- * Este helper facilita el registro y mantenimiento de modelos 3D
+ * Helper para el registro y mantenimiento de los modelos
  */
 
 const modelRegistry = {
@@ -15,7 +15,7 @@ const modelRegistry = {
       distance: 35,
       minDistance: 15,
       maxDistance: 60,
-      position: [0, -5, 35] // Alejado considerablemente
+      position: [0, -5, 35] 
     }
   },
   "Bacija de barro": {
@@ -36,10 +36,10 @@ const modelRegistry = {
     modelPath: "/Models/Cruz/output.obj",
     color: "#963f3f",
     camera: {
-      distance: 10, // Reduce la distancia para acercar la cámara
+      distance: 1,
       minDistance: 5,
-      maxDistance: 20,
-      position: [0, 0, 10] // Ajusta la posición de la cámara
+      maxDistance: 80,
+      position: [0, 0, 80] 
     }
   },
   "Quiosco": {
@@ -71,8 +71,8 @@ const modelRegistry = {
     camera: {
       distance: 35,
       minDistance: 15,
-      maxDistance: 60,
-      position: [0, 0, 35] 
+      maxDistance: 150,
+      position: [0, 0, 120] 
     }
   },
   "Exconvento de Santo Domingo": {
@@ -82,7 +82,7 @@ const modelRegistry = {
       distance: 35,
       minDistance: 15,
       maxDistance: 60,
-      position: [0, -2, 35] 
+      position: [0, -2, 40] 
     }
   }
 };
@@ -111,9 +111,9 @@ const modelAliases = {
 };
 
 /**
- * Get configuration for a specific model
- * @param {string} modelName - The name of the model
- * @returns {Object|null} - The model configuration or null if not found
+ * Configuración para cada uno de los modelos
+ * @param {string} modelName - Nombre de cada modelo
+ * @returns {Object|null} - Configuración de los modelos o nulo si no hay nada
  */
 export const getModelConfig = (modelName) => {
   if (!modelName) return null;
@@ -138,5 +138,4 @@ export const getAllModels = () => {
   return {...modelRegistry};
 };
 
-// Exportamos la base de datos de modelos para su uso en la aplicación
 export default modelRegistry;

@@ -28,22 +28,20 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
     return (
         <nav ref={navbarRef} className={`sticky top-0 z-50 ${isDarkMode ? "bg-[#141729]" : "bg-[#292E50]"}`}>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2">
-                <div className="relative flex h-14 sm:h-16 items-center justify-between">
-                    {/* Logo */}
+                <div className="relative flex h-22 sm:h-16 items-center justify-between">
                     <div className="flex items-center">
                         <Link to="/" className="flex items-center">
                             <img
-                                className="h-12 w-auto sm:h-16"
+                                className="h-20 w-auto sm:h-24"
                                 src="/Assets/PE_BLANCO.png"
                                 alt="Modelos 3D"
                             />
-                            <span className="ml-2 font-semibold text-lg sm:text-2xl text-white hidden sm:block">
+                            <span className="ml-8 font-bold text-xl sm:text-2xl text-white hidden sm:block">
                                 Biblioteca de Monumentos
                             </span>
                         </Link>
                     </div>
 
-                    {/* Desktop Links */}
                     <div className="hidden md:flex items-center">
                         <Link
                             to="/library"
@@ -164,7 +162,7 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                             <p className="mb-4">
                                 Esta plataforma busca preservar y difundir el patrimonio cultural a través de representaciones digitales precisas, facilitando el acceso al conocimiento histórico y arquitectónico.
                             </p>
-                            <p>Versión 3.0.0 - Desarrollado con tecnologías web modernas como React, Three.js y TailwindCSS.</p>
+                            <p>Versión 4.6.8 - Desplegado en Firebase y desarrollado con tecnologías web modernas como React | Vite, Three.js y TailwindCSS.</p>
                         </div>
                     </div>
                 </div>
