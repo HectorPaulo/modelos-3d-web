@@ -95,6 +95,28 @@ const modelRegistry = {
       maxDistance: 60,
       position: [0, -2, 35] 
     }
+  },
+  "Catedral de Oaxaca": {
+    modelType: "obj",
+    modelPath: "/Models/Catedral/output.obj",
+    color: "#ab9063",
+    camera: {
+      distance: 35,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -2, 35] 
+    }
+  },
+  "Árlbol del Tule": {
+    modelType: "obj",
+    modelPath: "/Models/Tule/output.obj",
+    color: "#ab9063",
+    camera: {
+      distance: 35,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -2, 35] 
+    }
   }
 };
 
