@@ -14,7 +14,6 @@ import Loader from "../Components/Loader/Loader";
 import Alert from "../Components/Alert/Alert";
 import SplineModel from "../Components/Models/SplineModel";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home({ isDarkMode }) {
@@ -211,79 +210,13 @@ export default function Home({ isDarkMode }) {
         };
     }, [isDarkMode]);
 
-    // const handleMouseEnter = (index) => {
-    //     gsap.to(cardRefs.current[index], {
-    //         height: isMobile ? "200px" : "300px",
-    //         duration: 0.5,
-    //         ease: "power2.out",
-    //     });
-    //     gsap.to(imgRefs.current[index], {
-    //         opacity: 1, 
-    //         scale: 1.1, 
-    //         duration: 0.5,
-    //         ease: "power2.out",
-    //     });
-    // };
-
-    // const handleMouseLeave = (index) => {
-    //     gsap.to(cardRefs.current[index], {
-    //         height: isMobile ? "100px" : "150px",
-    //         duration: 0.5,
-    //         ease: "power2.out",
-    //     });
-    //     gsap.to(imgRefs.current[index], {
-    //         opacity: 0,
-    //         scale: 1,
-    //         duration: 0.5,
-    //         ease: "power2.out",
-    //     });
-    // };
-
-    // const handleCardClick = (path, name) => {
-    //     if (path === "/museum") {
-    //         navigate(`/museum/${encodeURIComponent(name)}`);
-    //     } else {
-    //         navigate(path);
-    //     }
-    // };
-
-    // const cards = [
-    //     {
-    //         name: "Bacija de barro",
-    //         path: "/museum",
-    //         ...getModelConfig("Bacija de barro")
-    //     },
-    //     {
-    //         name: "Fuente de las 8 regiones",
-    //         path: "/museum",
-    //         ...getModelConfig("Fuente de las 8 regiones")
-    //     },
-    //     {
-    //         name: "Cruz",
-    //         path: "/museum",
-    //         ...getModelConfig("Cruz")
-    //     },
-    //     {
-    //         name: "Quiosco",
-    //         path: "/museum",
-    //         ...getModelConfig("Quiosco")
-    //     },
-    //     {
-    //         name: "Homenaje a Porfirio Díaz",
-    //         path: "/museum",
-    //         ...getModelConfig("Homenaje a Porfirio Díaz")
-    //     },
-    //     {
-    //         name: "Iglesia de Jalatlaco",
-    //         path: "/museum",
-    //         ...getModelConfig("Iglesia de Jalatlaco")
-    //     },
-    //     {
-    //         name: "Exconvento de Santo Domingo",
-    //         path: "/museum",
-    //         ...getModelConfig("Exconvento de Santo Domingo")
-    //     }
-    // ];
+    if (isLoading) {
+        return (
+            <div className={`flex items-center justify-center h-screen w-screen ${isDarkMode ? "bg-[#141729]" : "bg-gray-50"}`}>
+                <Loader />
+            </div>
+        );
+    }
 
     return (
         <div className={`min-h-screen ${isDarkMode ? "bg-black text-gray-100" : " text-gray-200"} relative`}>

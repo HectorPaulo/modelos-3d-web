@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MuseumModelCanvas from "../Components/Museum/MuseumModel";
 import { useResponsiveContext } from "../context/ResponsiveContext";
 import { getModelConfig } from "../utils/ModelRegistry";
+import Loader from "../Components/Loader/Loader";
 
 const Museum = ({ isDarkMode }) => {
   const { isMobile, isTablet } = useResponsiveContext();
@@ -61,12 +62,13 @@ const Museum = ({ isDarkMode }) => {
       <div className={`flex items-center justify-center h-screen w-screen ${
         isDarkMode ? "bg-[#141729]" : "bg-gray-50"
       }`}>
-        <div className="flex-col gap-4 w-full flex items-center justify-center">
+        {/* <div className="flex-col gap-4 w-full flex items-center justify-center">
           <div className="w-20 h-20 border-4 border-transparent text-blue-800 text-4xl animate-spin flex items-center justify-center border-t-blue-800 rounded-full">
             <div className="w-16 h-16 border-4 border-transparent text-red-700 text-2xl animate-spin flex items-center justify-center border-t-red-700 rounded-full">
             </div>
           </div>
-        </div>
+        </div> */}
+        <Loader />
       </div>
     );
   }
