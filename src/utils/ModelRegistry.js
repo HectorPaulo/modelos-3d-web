@@ -84,6 +84,17 @@ const modelRegistry = {
       maxDistance: 60,
       position: [0, -2, 40] 
     }
+  },
+  "Iglesia Sangre de Cristo": {
+    modelType: "obj",
+    modelPath: "/Models/IglesiaSangreCristo/output.obj",
+    color: "#ab9063",
+    camera: {
+      distance: 35,
+      minDistance: 15,
+      maxDistance: 60,
+      position: [0, -2, 35] 
+    }
   }
 };
 
@@ -101,13 +112,16 @@ const modelAliases = {
   "homenaje": "Homenaje a Porfirio Diaz",
   "iglesia de jalatlaco": "Iglesia de Jalatlaco",
   "iglesia jalatlaco": "Iglesia de Jalatlaco",
-  "iglesia": "Iglesia de Jalatlaco",
   "exconvento de santo domingo": "Exconvento de Santo Domingo",
   "exconvento santo domingo": "Exconvento de Santo Domingo",
   "exconvento": "Exconvento de Santo Domingo",
   "bajia de barro": "Bacija de barro",
   "bacia de barro": "Bacija de barro",
   "bacia barro": "Bacija de barro",
+  "Iglesia sangre de cristo": "Iglesia Sangre de Cristo",
+  "iglesia sangre de cristo": "Iglesia Sangre de Cristo",
+  "iglesia sangre": "Iglesia Sangre de Cristo",
+  "iglesia cristo": "Iglesia Sangre de Cristo",
 };
 
 /**
