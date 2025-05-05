@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 // MuseumModel.jsx
 import React, { useRef, useEffect, useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
@@ -7,65 +6,57 @@ import { OrbitControls, Stage } from "@react-three/drei";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { Mesh, MeshStandardMaterial, Color } from "three";
-import { useLoader } from "@react-three/fiber";
 
 // Componente para el modelo 3D
 function Model({ modelPath, modelType, texturePath, normalMapPath, color }) {
   const [model, setModel] = useState(null);
   const meshRef = useRef();
-  
+
   useEffect(() => {
-    // Cargar el modelo según su tipo
     if (modelType === 'obj') {
       const objLoader = new OBJLoader();
+      const textureLoader = new TextureLoader(); // Usa TextureLoader directamente
+
       objLoader.load(modelPath, (obj) => {
-        // Aplicar material a todas las mallas
-        obj.traverse(child => {
+        obj.traverse((child) => {
           if (child instanceof Mesh) {
-            const material = new MeshStandardMaterial({ 
+            const material = new MeshStandardMaterial({
               color: new Color(color || "#808080"),
               roughness: 0.5,
-              metalness: 0.5
+              metalness: 0.5,
             });
-            
-            // Si hay textura, aplicarla
+
             if (texturePath) {
-              const texture = useLoader(TextureLoader, texturePath);
+              const texture = textureLoader.load(texturePath); // Carga la textura
               material.map = texture;
             }
-            
-            // Si hay mapa normal, aplicarlo
             if (normalMapPath) {
-              const normalMap = useLoader(TextureLoader, normalMapPath);
+              const normalMap = textureLoader.load(normalMapPath); // Carga el mapa normal
               material.normalMap = normalMap;
             }
-            
+
             child.material = material;
           }
         });
-        
         setModel(obj);
       });
     } else if (modelType === 'stl') {
       const stlLoader = new STLLoader();
       stlLoader.load(modelPath, (geometry) => {
-        console.log("STL cargado correctamente:", geometry);
-        const material = new MeshStandardMaterial({ 
+        const material = new MeshStandardMaterial({
           color: new Color(color || "#808080"),
           roughness: 0.5,
-          metalness: 0.5 
+          metalness: 0.5,
         });
         const mesh = new Mesh(geometry, material);
         setModel(mesh);
-      }, undefined, (error) => {
-        console.error("Error al cargar el STL:", error);
       });
     }
   }, [modelPath, modelType, texturePath, normalMapPath, color]);
 
   if (!model) return null;
-  
-  return <primitive ref={meshRef} object={model} />;
+
+  return <primitive ref={meshRef} object={model} scale={[0.1, 0.1, 0.1]} />; // Ajusta la escala según sea necesario
 }
 
 // Componentes para controlar la cámara
@@ -125,18 +116,18 @@ function MuseumModelCanvas({
     minDistance: 2,
     maxDistance: 10,
     position: [0, 0, 5]
-  }
+  },
+  scale = [1, 1, 1]
 }) {
   return (
     <Canvas 
       dpr={[1, 2]} 
-      camera={{ position: [0, 0, 5], fov: 50 }}
+      camera={{ position: [0, 0, 10], fov: 50 }} // Aleja la cámara
       style={{ background: background }}
     >
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
       <pointLight position={[-10, -10, -10]} intensity={0.5} />
-      
       <Stage contactShadow shadows adjustCamera={false} intensity={0.5}>
         <Model 
           modelPath={modelPath} 
@@ -144,6 +135,7 @@ function MuseumModelCanvas({
           texturePath={texturePath}
           normalMapPath={normalMapPath}
           color={color}
+          scale={scale} // Aplica la escala aquí
         />
       </Stage>
       
@@ -162,12 +154,3 @@ function MuseumModelCanvas({
 }
 
 export default MuseumModelCanvas;
-
-// Example usage
-<MuseumModelCanvas 
-  modelPath="/Models/IglesiaJalatlaco/output.stl"
-  modelType="stl"
-  color="#979039"
-  autoRotate={true}
-  background="#141729"
-/>

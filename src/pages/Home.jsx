@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate, Link } from "react-router-dom"; 
-import Carousel from "../Components/Carrusel/Carousel";
+// import Carousel from "../Components/Carrusel/Carousel";
 import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
 import MuseumModelCanvas from "../Components/Museum/MuseumModel"; 
@@ -213,79 +214,79 @@ export default function Home({ isDarkMode }) {
         };
     }, [isDarkMode]);
 
-    const handleMouseEnter = (index) => {
-        gsap.to(cardRefs.current[index], {
-            height: isMobile ? "200px" : "300px",
-            duration: 0.5,
-            ease: "power2.out",
-        });
-        gsap.to(imgRefs.current[index], {
-            opacity: 1, 
-            scale: 1.1, 
-            duration: 0.5,
-            ease: "power2.out",
-        });
-    };
+    // const handleMouseEnter = (index) => {
+    //     gsap.to(cardRefs.current[index], {
+    //         height: isMobile ? "200px" : "300px",
+    //         duration: 0.5,
+    //         ease: "power2.out",
+    //     });
+    //     gsap.to(imgRefs.current[index], {
+    //         opacity: 1, 
+    //         scale: 1.1, 
+    //         duration: 0.5,
+    //         ease: "power2.out",
+    //     });
+    // };
 
-    const handleMouseLeave = (index) => {
-        gsap.to(cardRefs.current[index], {
-            height: isMobile ? "100px" : "150px",
-            duration: 0.5,
-            ease: "power2.out",
-        });
-        gsap.to(imgRefs.current[index], {
-            opacity: 0,
-            scale: 1,
-            duration: 0.5,
-            ease: "power2.out",
-        });
-    };
+    // const handleMouseLeave = (index) => {
+    //     gsap.to(cardRefs.current[index], {
+    //         height: isMobile ? "100px" : "150px",
+    //         duration: 0.5,
+    //         ease: "power2.out",
+    //     });
+    //     gsap.to(imgRefs.current[index], {
+    //         opacity: 0,
+    //         scale: 1,
+    //         duration: 0.5,
+    //         ease: "power2.out",
+    //     });
+    // };
 
-    const handleCardClick = (path, name) => {
-        if (path === "/museum") {
-            navigate(`/museum/${encodeURIComponent(name)}`);
-        } else {
-            navigate(path);
-        }
-    };
+    // const handleCardClick = (path, name) => {
+    //     if (path === "/museum") {
+    //         navigate(`/museum/${encodeURIComponent(name)}`);
+    //     } else {
+    //         navigate(path);
+    //     }
+    // };
 
-    const cards = [
-        {
-            name: "Bacija de barro",
-            path: "/museum",
-            ...getModelConfig("Bacija de barro")
-        },
-        {
-            name: "Fuente de las 8 regiones",
-            path: "/museum",
-            ...getModelConfig("Fuente de las 8 regiones")
-        },
-        {
-            name: "Cruz",
-            path: "/museum",
-            ...getModelConfig("Cruz")
-        },
-        {
-            name: "Quiosco",
-            path: "/museum",
-            ...getModelConfig("Quiosco")
-        },
-        {
-            name: "Homenaje a Porfirio Díaz",
-            path: "/museum",
-            ...getModelConfig("Homenaje a Porfirio Díaz")
-        },
-        {
-            name: "Iglesia de Jalatlaco",
-            path: "/museum",
-            ...getModelConfig("Iglesia de Jalatlaco")
-        },
-        {
-            name: "Exconvento de Santo Domingo",
-            path: "/museum",
-            ...getModelConfig("Exconvento de Santo Domingo")
-        }
-    ];
+    // const cards = [
+    //     {
+    //         name: "Bacija de barro",
+    //         path: "/museum",
+    //         ...getModelConfig("Bacija de barro")
+    //     },
+    //     {
+    //         name: "Fuente de las 8 regiones",
+    //         path: "/museum",
+    //         ...getModelConfig("Fuente de las 8 regiones")
+    //     },
+    //     {
+    //         name: "Cruz",
+    //         path: "/museum",
+    //         ...getModelConfig("Cruz")
+    //     },
+    //     {
+    //         name: "Quiosco",
+    //         path: "/museum",
+    //         ...getModelConfig("Quiosco")
+    //     },
+    //     {
+    //         name: "Homenaje a Porfirio Díaz",
+    //         path: "/museum",
+    //         ...getModelConfig("Homenaje a Porfirio Díaz")
+    //     },
+    //     {
+    //         name: "Iglesia de Jalatlaco",
+    //         path: "/museum",
+    //         ...getModelConfig("Iglesia de Jalatlaco")
+    //     },
+    //     {
+    //         name: "Exconvento de Santo Domingo",
+    //         path: "/museum",
+    //         ...getModelConfig("Exconvento de Santo Domingo")
+    //     }
+    // ];
 
     return (
         <div className={`min-h-screen ${isDarkMode ? "bg-black text-gray-100" : " text-gray-200"} relative`}>
@@ -382,7 +383,6 @@ export default function Home({ isDarkMode }) {
                                     isDarkMode ? "mt-20 sm:mt-40" : ""
                                 }`}
                             />
-                            <Carousel />
                         </div>
                     </div>
                 </div>
@@ -441,63 +441,6 @@ export default function Home({ isDarkMode }) {
                     {/* Componente SplineModel */}
                     <SplineModel isDarkMode={isDarkMode} />
 </div>
-                </div>
-            </div>
-            <div ref={contentRef}>
-                <div className={`mx-auto mt-0 max-w-7xl px-4 py-6 sm:py-12 sm:px-6 lg:px-8`}>
-                    {/* Contenedor del título y el modelo de Spline */}
-                    <div className="flex justify-between items-center mb-6">
-                        {/* Título */}
-                        <h2 className={`text-6xl font-bold ${isDarkMode ? "text-white" : "text-[#2a3159]"}`}>
-                            Monumentos destacados
-                        </h2>
-
-                    </div>
-
-                    {/* Grid de monumentos */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 place-items-center">
-                        {cards.map((card, index) => (
-                            <div
-                                key={index}
-                                ref={(el) => (cardRefs.current[index] = el)}
-                                className={`w-full max-w-md relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer mx-auto ${
-                                    isDarkMode 
-                                        ? "bg-[#141729] border-gray-700" 
-                                        : "bg-white/30 border-[#aeceb2]"
-                                }`}
-                                style={{
-                                    height: isMobile ? "100px" : "150px",
-                                    boxShadow: isDarkMode ? '0 4px 6px -1px rgba(0, 0, 0, 0.5)' : 'none',
-                                }}
-                                onMouseEnter={() => handleMouseEnter(index)}
-                                onMouseLeave={() => handleMouseLeave(index)}
-                                onClick={() => handleCardClick(card.path, card.name)}
-                            >
-                                <div className="absolute top-2 right-2 z-30 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
-                                    {card.modelType === 'stl' ? 'STL' : 'OBJ'}
-                                </div>
-
-                                <div className="h-full w-full">
-                                    <MuseumModelCanvas
-                                        modelPath={card.modelPath}
-                                        modelType={card.modelType}
-                                        texturePath={card.texturePath}
-                                        normalMapPath={card.normalMapPath}
-                                        color={card.color}
-                                        autoRotate={true}
-                                        background={isDarkMode ? "#141729" : "transparent"}
-                                    />
-                                    <div
-                                        className={`absolute bottom-0 left-0 w-full py-2 text-center font-semibold text-2xl ${
-                                            isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"
-                                        }`}
-                                    >
-                                        {card.name}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </div>
         </div>

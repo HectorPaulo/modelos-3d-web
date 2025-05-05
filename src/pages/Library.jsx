@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import MuseumModelCanvas from "../Components/Museum/MuseumModel";
+import Carousel from "/src/Components/Carrusel/Carousel"
 import { useResponsiveContext } from "../context/ResponsiveContext";
 import { getModelConfig, getAllModels } from "../utils/ModelRegistry";
 
@@ -102,7 +103,7 @@ export default function Library({ isDarkMode }) {
                     {card.modelType === 'stl' ? 'STL' : 'OBJ'}
                 </div>
                 
-                <div className="h-full w-full">
+                <div className="h-full w-full flex items-center justify-center">
                     <MuseumModelCanvas 
                         modelPath={card.modelPath}
                         modelType={card.modelType}
@@ -111,12 +112,13 @@ export default function Library({ isDarkMode }) {
                         color={card.color}
                         autoRotate={true}
                         background={isDarkMode ? "#141729" : "transparent"}
+                        scale={[0.05, 0.05, 0.05]} // Escala ajustada
                     />
-                    <div className={`absolute bottom-0 left-0 w-full py-2 text-center font-semibold text-xl 
-                        ${isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"}`}
-                    >
-                        {card.name}
-                    </div>
+                </div>
+                <div className={`absolute bottom-0 left-0 w-full py-2 text-center font-semibold text-xl 
+                    ${isDarkMode ? "bg-gray-800/70 text-gray-200" : "bg-white/70 text-gray-800"}`}
+                >
+                    {card.name}
                 </div>
             </div>
         ));
@@ -125,10 +127,10 @@ export default function Library({ isDarkMode }) {
     return (
         <div className={`min-h-screen ${isDarkMode ? "bg-black text-gray-100" : "bg-gray-50 text-gray-800"} py-10`}>
             <div className="container mx-auto px-4">
-                <h1 className={`text-3xl sm:text-4xl font-bold text-center mb-10 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
+                <h1 className={`text-6xl sm:text-4xl font-bold text-center mb-35 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
                     Biblioteca de Monumentos
                 </h1>
-                
+                <Carousel />
                 <div ref={contentRef}>
                     {/* Sección de Monumentos */}
                     <div className="mb-12">

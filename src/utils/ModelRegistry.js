@@ -23,12 +23,12 @@ const modelRegistry = {
     modelPath: "/Models/Museum/output.obj",
     texturePath: "/Models/Museum/baked_mesh_tex0.png",
     normalMapPath: "/Models/Museum/baked_mesh_norm0.png",
-    color: "#8b4513", // Marrón válido
+    color: "#8b4513",
     camera: {
-      distance: 0.5, // Mucho más cerca que antes
+      distance: 0.5,
       minDistance: 0.1,
       maxDistance: 1.0,
-      position: [0, 0, 1] // Mucho más cerca
+      position: [0, 0, 1]
     }
   },
   "Cruz de piedra": {
@@ -65,8 +65,8 @@ const modelRegistry = {
     }
   },
   "Iglesia de Jalatlaco": {
-    modelType: "stl",
-    modelPath: "/Models/IglesiaJalatlaco/output.stl",
+    modelType: "obj",
+    modelPath: "/Models/IglesiaJalatlaco/output.obj",
     color: "#979039",
     camera: {
       distance: 35,

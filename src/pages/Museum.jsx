@@ -47,6 +47,14 @@ const Museum = ({ isDarkMode }) => {
     } else {
       setModelConfig({});
     }
+
+    if (!config || Object.keys(config).length === 0) {
+      setModelConfig({
+        modelPath: "/Models/Error/objError.obj",
+        modelType: "obj",
+        color: "#ff0000"
+      });
+    }
   }, [decodedName]);
 
   if (isLoading) {
