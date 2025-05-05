@@ -159,10 +159,11 @@ const RollingGallery = ({
                 alt="gallery"
                 className="pointer-events-none rounded-[15px] object-cover
                            transition-transform duration-300 ease-out group-hover:scale-105
-                           sm:h-[100px] sm:w-[220px]
-                           md:h-[150px] md:w-[300px]
-                           lg:h-[200px] lg:w-[350px]
-                           xl:h-[250px] xl:w-[400px]"
+                           sm:h-[50px] sm:w-[110px] 
+                           md:h-[75px] md:w-[125px] 
+                           lg:h-[175px] lg:w-[150px] 
+                           xl:h-[250px] xl:w-[175px] 
+                           "
               />
             </div>
           ))}

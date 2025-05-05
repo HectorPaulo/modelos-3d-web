@@ -36,9 +36,6 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                                 src="/Assets/PE_BLANCO.png"
                                 alt="Modelos 3D"
                             />
-                            <span className="ml-8 font-bold text-xl sm:text-2xl text-white hidden sm:block">
-                                Biblioteca de Monumentos
-                            </span>
                         </Link>
                     </div>
 

@@ -34,8 +34,8 @@
 
 .card-3d div {
   position: absolute;
-  width: 150px;
-  height: 200px;
+  width: 60px; /* Reducido aún más */
+  height: 90px; /* Reducido aún más */
   background-color: rgb(199, 199, 199);
   border-radius: 0.5rem;
   top: 50%;
@@ -46,15 +46,14 @@
   will-change: transform, filter;
   box-shadow: none;
 }
-
-
+/* 
 .card-3d:hover {
   animation-play-state: paused !important;
-}
+} */
 
-.card-3d:hover div {
+/* .card-3d:hover div {
   animation-play-state: paused !important;
-}
+} */
 
 .card-3d div:nth-child(1) {
   transform: translate(-50%, -50%) rotateY(0deg) translateZ(300px); /* Incrementado */

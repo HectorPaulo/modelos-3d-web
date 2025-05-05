@@ -424,7 +424,7 @@ export default function Home({ isDarkMode }) {
                 </div>
 
                 {/* Contenedor de SplineModel con superposición */}
-                <div className="relative w-2/5 h-full hidden lg:block"> {/* Mostrar solo en pantallas grandes */}
+                <div className="relative w-3/5 h-full hidden lg:block"> {/* Mostrar solo en pantallas grandes */}
                     {/* Div superpuesto para capturar clics */}
                     <div
                         className="absolute inset-0 z-30 cursor-pointer"
@@ -435,7 +435,6 @@ export default function Home({ isDarkMode }) {
 
 <div className="relative z-20">
 
-                    {/* Componente SplineModel */}
                     <SplineModel isDarkMode={isDarkMode} />
 </div>
                 </div>
