@@ -127,7 +127,7 @@ export default function Library({ isDarkMode }) {
     return (
         <div className={`min-h-screen ${isDarkMode ? "bg-black text-gray-100" : "bg-gray-50 text-gray-800"} py-10`}>
             <div className="container mx-auto px-4">
-                <h1 className={`text-6xl sm:text-4xl font-bold text-center mb-35 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
+                <h1 className={`text-6npm runxl sm:text-4xl font-bold text-center mb-35 ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
                     Biblioteca de Monumentos
                 </h1>
                 <Carousel />

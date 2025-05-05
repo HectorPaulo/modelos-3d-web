@@ -67,12 +67,12 @@ const modelRegistry = {
   "Iglesia de Jalatlaco": {
     modelType: "obj",
     modelPath: "/Models/IglesiaJalatlaco/output.obj",
-    color: "#979039",
+    color: "#666f56",
     camera: {
       distance: 35,
       minDistance: 15,
       maxDistance: 60,
-      position: [0, -2, 35] 
+      position: [0, 0, 35] 
     }
   },
   "Exconvento de Santo Domingo": {
