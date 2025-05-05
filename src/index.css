@@ -1,9 +1,24 @@
 @import "tailwindcss";
 
 .bg-light {
-  @apply bg-[url('/src/assets/Backgrounds/abstracto4.jpg')] bg-cover bg-center rounded-b-full;
+  @apply bg-[url('/assets/Backgrounds/abstracto4.jpg')] bg-cover bg-center rounded-b-full;
 }
 
 .bg-dark {
-  @apply bg-[url('/src/assets/Backgrounds/abstracto7.jpg')] bg-cover bg-center rounded-b-full;
+  @apply bg-[url('/assets/Backgrounds/abstracto7.jpg')] bg-cover bg-center rounded-b-full;
+}
+ 
+
+a#logo {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.spline-viewer {
+  overflow: hidden;
+}
+
+.spline-viewer a#logo {
+  display: none !important;
 }

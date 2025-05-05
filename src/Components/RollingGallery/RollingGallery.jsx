@@ -1,23 +1,24 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   motion,
   useMotionValue,
   useAnimation,
   useTransform,
 } from "framer-motion";
+import { useResponsiveContext } from "../../context/ResponsiveContext";
 
 const IMGS = [
-  "/src/assets/ModelImages/porfirio-diaz1.jpeg",
-  "/src/assets/ModelImages/cruz-de-piedra4.jpeg",
-  "/src/assets/ModelImages/iglesia1.jpeg",
-  "/src/assets/ModelImages/sto-domingo1.jpeg",
-  "/src/assets/ModelImages/teatro-macedonio-alcala-3.jpeg",
-  "/src/assets/ModelImages/armadura2.jpeg",
-  "/src/assets/ModelImages/porfirio-diaz3.jpeg",
-  "/src/assets/ModelImages/iglesia2.jpeg",
-  "/src/assets/ModelImages/cruz-de-piedra5.jpeg",
-  "/src/assets/ModelImages/teatro-macedonio-alcala-1.jpeg",
+  "/Assets/ModelImages/porfirio-diaz1.jpeg",
+  "/Assets/ModelImages/cruz-de-piedra4.jpeg",
+  "/Assets/ModelImages/iglesia1.jpeg",
+  "/Assets/ModelImages/sto-domingo1.jpeg",
+  "/Assets/ModelImages/teatro-macedonio-alcala-3.jpeg",
+  "/Assets/ModelImages/armadura2.jpeg",
+  "/Assets/ModelImages/porfirio-diaz3.jpeg",
+  "/Assets/ModelImages/iglesia2.jpeg",
+  "/Assets/ModelImages/cruz-de-piedra5.jpeg",
+  "/Assets/ModelImages/teatro-macedonio-alcala-1.jpeg",
 ];
 
 const RollingGallery = ({
@@ -27,19 +28,26 @@ const RollingGallery = ({
 }) => {
   images = images.length > 0 ? images : IMGS;
 
-  const [isScreenSizeSm, setIsScreenSizeSm] = useState(
-    window.innerWidth <= 640,
-  );
-  useEffect(() => {
-    const handleResize = () => setIsScreenSizeSm(window.innerWidth <= 640);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Usar nuestro contexto responsive
+  const { breakpoint, width, isMobile, isTablet, isDesktop } = useResponsiveContext();
+
+  // Ajustar dimensiones según el tamaño de pantalla
+  const getCylinderWidth = () => {
+    if (isMobile) return 1100;
+    if (isTablet) return 1800;
+    return 2200; // Para pantallas grandes
+  };
+  
+  const getFaceWidth = (cylinderWidth, count) => {
+    if (isMobile) return (cylinderWidth / count) * 1.5;
+    if (isTablet) return (cylinderWidth / count) * 1.6;
+    return (cylinderWidth / count) * 1.8; // Más grande para pantallas grandes
+  };
 
   // 3D geometry
-  const cylinderWidth = isScreenSizeSm ? 1100 : 1800;
+  const cylinderWidth = getCylinderWidth();
   const faceCount = images.length;
-  const faceWidth = isScreenSizeSm ? (cylinderWidth / faceCount) * 1.5 : (cylinderWidth / faceCount) * 1.6;
+  const faceWidth = getFaceWidth(cylinderWidth, faceCount);
   const radius = cylinderWidth / (2 * Math.PI);
 
   // Framer Motion
@@ -107,7 +115,9 @@ const RollingGallery = ({
   };
 
   return (
-    <div className="relative h-[500px] w-full hidden md:block -mt-60">
+    <div className={`relative ${
+      isMobile ? 'hidden' : 'block'
+    } h-[700px] w-full -mt-60`}>
       <div
         className="absolute top-0 left-0 h-full w-[48px] z-10"
       />
@@ -147,9 +157,12 @@ const RollingGallery = ({
               <img
                 src={url}
                 alt="gallery"
-                className="pointer-events-none h-100 w-100 rounded-[15px] object-cover
+                className="pointer-events-none rounded-[15px] object-cover
                            transition-transform duration-300 ease-out group-hover:scale-105
-                           sm:h-[100px] sm:w-[220px]"
+                           sm:h-[100px] sm:w-[220px]
+                           md:h-[150px] md:w-[300px]
+                           lg:h-[200px] lg:w-[350px]
+                           xl:h-[250px] xl:w-[400px]"
               />
             </div>
           ))}

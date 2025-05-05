@@ -2,13 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.89/build/spline-viewer.js"></script>
     <link rel="icon" type="image/svg+xml" href="/vite.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/index.css">
-    <title>Modelos 3D</title>
+    <title>BiMo | Biblioteca de monumentos</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.addEventListener("load", () => {
+        const splineLogo = document.querySelector("a#logo");
+        if (splineLogo) {
+          splineLogo.remove();
+        }
+      });
+    </script>
   </body>
 </html>
