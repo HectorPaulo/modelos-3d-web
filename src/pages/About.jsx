@@ -42,15 +42,15 @@ const About = ({ isDarkMode }) => {
         <div className="relative z-20 max-w-4xl mx-auto p-6">
           <h1
             className="relative z-30 text-7xl font-bold w-full mb-20">
-            A cerca de BiMo
+            Acerca de BiMo
           </h1>
-          <p className="mb-4 text-2xl font-semibold">
+          <p className="mb-4 text-lg font-semibold text-justify">
             BiMo (Biblioteca de Monumentos) es un proyecto desarrollado para la Universidad La Salle Oaxaca que permite visualizar y explorar modelos 3D de monumentos históricos y culturales.
           </p>
-          <p className="mb-4 text-2xl font-semibold">
+          <p className="mb-4 text-lg font-semibold text-justify">
             Esta plataforma busca preservar y difundir el patrimonio cultural a través de representaciones digitales precisas, facilitando el acceso al conocimiento histórico y arquitectónico.
           </p>
-          <p className="mb-8 text-2xl font-semibold">
+          <p className="mb-8 text-lg font-semibold text-justify">
             Versión 5.9.1 - Desplegado en Firebase y desarrollado con tecnologías web modernas como React | Vite, Three.js y TailwindCSS.
           </p>
         </div>
