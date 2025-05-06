@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Museum from './pages/Museum';
 import Footer from './Components/Footer/Footer';
 import { ResponsiveProvider } from './context/ResponsiveContext';
+import About from './pages/About'; // Importa la nueva página
 
 // Función para determinar el tema según la hora del día
 const shouldUseDarkMode = () => {
@@ -106,12 +107,13 @@ function App() {
           <Route path="/library" element={<Library isDarkMode={isDarkMode} />} />
           <Route path="/museum/:modelName" element={<Museum isDarkMode={isDarkMode} />} />
           <Route path="/museum" element={<Museum isDarkMode={isDarkMode} />} />
+          <Route path="/about" element={<About isDarkMode={isDarkMode} />} /> {/* Nueva ruta */}
         </Routes>
         <Footer
-        isDarkMode={isDarkMode}
-        toggleTheme={toggleTheme}
-        toggleAutoTheme={toggleAutoTheme}
-        isAutoTheme={isAutoTheme}
+          isDarkMode={isDarkMode}
+          toggleTheme={toggleTheme}
+          toggleAutoTheme={toggleAutoTheme}
+          isAutoTheme={isAutoTheme}
         />
       </Router>
     </ResponsiveProvider>

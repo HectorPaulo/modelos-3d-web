@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useResponsiveContext } from "../../context/ResponsiveContext";
 
 const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
@@ -8,6 +8,7 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
     const navbarRef = useRef(null);
     const [isAboutOpen, setIsAboutOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         gsap.fromTo(
@@ -21,8 +22,12 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
         setIsAboutOpen(!isAboutOpen);
     };
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+    const handleAboutClick = () => {
+        if (isMobile) {
+            toggleAboutModal();
+        } else {
+            navigate("/about");
+        }
     };
 
     return (
@@ -41,13 +46,19 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
 
                     <div className="hidden md:flex items-center">
                         <Link
+                            to="/"
+                            className="mx-4 font-semibold text-lg sm:text-xl text-white hover:text-indigo-200 transition"
+                        >
+                            Inicio
+                        </Link>
+                        <Link
                             to="/library"
                             className="mx-4 font-semibold text-lg sm:text-xl text-white hover:text-indigo-200 transition"
                         >
                             Biblioteca
                         </Link>
                         <button
-                            onClick={toggleAboutModal}
+                            onClick={handleAboutClick}
                             className="mx-4 font-semibold text-lg sm:text-xl text-white hover:text-indigo-200 transition"
                         >
                             Acerca de BiMo
@@ -57,7 +68,7 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                     {/* Mobile Menu Button */}
                     {isMobile && (
                         <button
-                            onClick={toggleMenu}
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="p-2 rounded text-white hover:bg-indigo-700"
                         >
                             {isMenuOpen ? "✖" : "☰"}
@@ -101,14 +112,14 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                     <Link
                         to="/library"
                         className="block px-4 py-2 text-white hover:bg-indigo-700"
-                        onClick={toggleMenu}
+                        onClick={() => setIsMenuOpen(false)}
                     >
                         Biblioteca
                     </Link>
                     <button
                         onClick={() => {
-                            toggleAboutModal();
-                            toggleMenu();
+                            handleAboutClick();
+                            setIsMenuOpen(false);
                         }}
                         className="block px-4 py-2 text-white hover:bg-indigo-700"
                     >
@@ -118,7 +129,7 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
             )}
 
             {/* About Modal */}
-            {isAboutOpen && (
+            {isAboutOpen && isMobile && (
                 <div className="fixed inset-0 z-50 flex items-start justify-start pt-24 sm:pt-32">
                     <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={toggleAboutModal}></div>
                     <div
@@ -159,7 +170,7 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                             <p className="mb-4">
                                 Esta plataforma busca preservar y difundir el patrimonio cultural a través de representaciones digitales precisas, facilitando el acceso al conocimiento histórico y arquitectónico.
                             </p>
-                            <p>Versión 4.9.0 - Desplegado en Firebase y desarrollado con tecnologías web modernas como React | Vite, Three.js y TailwindCSS.</p>
+                            <p>Versión 5.3.0 - Desplegado en Firebase y desarrollado con tecnologías web modernas como React | Vite, Three.js y TailwindCSS.</p>
                         </div>
                     </div>
                 </div>

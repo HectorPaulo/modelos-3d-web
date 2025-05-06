@@ -318,7 +318,7 @@ export default function Home({ isDarkMode }) {
                 </div>
             </div>
             <div className="flex flex-row-reverse items-start justify-center sm:mt-20 pb-10">
-                <div className=" sm:mt-20 w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3">
+                <div className=" sm:mt-20 w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/3 z-50">
                     <h2 className={`font-black mb-4 text-5xl ${isDarkMode ? "text-white" : "text-[#141729]"}`}>
                         Comparar fotografía de un monumento histórico
                     </h2>
@@ -358,9 +358,10 @@ export default function Home({ isDarkMode }) {
 
                 {/* Contenedor de SplineModel con superposición */}
                 <div className="relative w-3/5 h-full hidden lg:block"> {/* Mostrar solo en pantallas grandes */}
+                    
                     {/* Div superpuesto para capturar clics */}
                     <div
-                        className="absolute inset-0 z-30 cursor-pointer"
+                        className="absolute ml-35 inset-115 z-30 cursor-pointer rounded-full w-60 h-20"
                         onClick={() => navigate("/library")}
                     ></div>
 
