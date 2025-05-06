@@ -170,7 +170,7 @@ const Navbar = ({ isDarkMode, toggleTheme, isAutoTheme, toggleAutoTheme }) => {
                             <p className="mb-4">
                                 Esta plataforma busca preservar y difundir el patrimonio cultural a través de representaciones digitales precisas, facilitando el acceso al conocimiento histórico y arquitectónico.
                             </p>
-                            <p>Versión 5.3.0 - Desplegado en Firebase y desarrollado con tecnologías web modernas como React | Vite, Three.js y TailwindCSS.</p>
+                            <p>Versión 5.6.6 - Desplegado en Firebase y desarrollado con tecnologías web modernas como React | Vite, Three.js y TailwindCSS.</p>
                         </div>
                     </div>
                 </div>

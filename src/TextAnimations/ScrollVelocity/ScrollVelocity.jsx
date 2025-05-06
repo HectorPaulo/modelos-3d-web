@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*
 	Installed from https://reactbits.dev/tailwind/
 */
@@ -34,7 +35,7 @@ export const ScrollVelocity = ({
   scrollContainerRef,
   texts = [],
   velocity = 100,
-  className = "",
+  className = "text-lg",
   damping = 50,
   stiffness = 400,
   numCopies = 6,
@@ -122,7 +123,7 @@ export const ScrollVelocity = ({
         style={parallaxStyle}
       >
         <motion.div
-          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] drop-shadow md:text-[5rem] md:leading-[5rem]`}
+          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] md:text-[5rem] md:leading-[5rem]`}
           style={{ x, ...scrollerStyle }}
         >
           {spans}

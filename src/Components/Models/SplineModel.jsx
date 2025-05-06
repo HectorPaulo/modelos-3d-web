@@ -11,6 +11,7 @@ const SplineModel = ({ isDarkMode }) => {
     
             <div className=" w-150 h-150 rounded-full  z-[-10] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
     <div className="relative  w-full h-full ">
+      <div className="absolute inset-95 z-30 cursor-pointer h-20 w-59 ml-18 rounded-full" onClick={() => navigate("/library")}></div>
     {/* Div que cubre el logo con fondo dinámico */}
     <div
         className="absolute bottom-0 right-0 z-10 w-1/4 h-1/6 mb-4"

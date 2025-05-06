@@ -19,7 +19,7 @@ const Footer = ({isDarkMode}) => {
                       <a href="https://flowbite.com/" className="flex items-center">
                           <img src="/Assets/4_IMAGOTIPO_LASALLE_OAXACA_CALADO-SIN FONDO - Editado.png" className="h-10 m-3" alt="Logo de la app" />
                           <span className={`sm:text-lg md:text-xl self-center lg:text-2xl font-semibold whitespace-nowrap ${isDarkMode ? "text-white" : "text-gray-100"}`}>
-                            Biblioteca de modelos 3D
+                            Biblioteca de monumentos
                           </span>
                       </a>
                   </div>

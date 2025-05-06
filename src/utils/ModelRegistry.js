@@ -83,11 +83,12 @@ const modelRegistry = {
   "Exconvento de Cuilapam": {
     modelType: "obj",
     modelPath: "/Models/Exconvento/output.obj",
+    color: "#666f56",
     camera: {
       distance: 35,
       minDistance: 15,
       maxDistance: 60,
-      position: [0, -2, 40] 
+      position: [0, -2, 35] 
     },
     description: "Esta construcción de grandes dimensiones se comenzó a mediados del siglo XVI para albergar a la orden dominica. En su diseño sobresalen la fachada de estilo plateresco, la cual incluye dos torres circulares a cada costado, cada una con su propio campanario; su planta de tres naves; y también la espaciosa capilla abierta, en la cual se evangelizaba a los naturales de la zona. -Neri Sosa"
   },
@@ -178,9 +179,10 @@ const modelAliases = {
   "homenaje": "Homenaje a Porfirio Diaz",
   "iglesia de jalatlaco": "Iglesia de Jalatlaco",
   "iglesia jalatlaco": "Iglesia de Jalatlaco",
-  "exconvento de santo domingo": "Exconvento de Santo Domingo",
-  "exconvento santo domingo": "Exconvento de Santo Domingo",
-  "exconvento": "Exconvento de Santo Domingo",
+  "Exconvento": "Exconvento de Cuilapam",
+  "exconvento": "Exconvento de Cuilapam",
+  "exconvento cuilapam": "Exconvento de Cuilapam",
+  "exconvento de cuilapam": "Exconvento de Cuilapam",
   "bajia de barro": "Bacija de barro",
   "bacia de barro": "Bacija de barro",
   "bacia barro": "Bacija de barro",

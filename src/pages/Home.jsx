@@ -219,7 +219,7 @@ export default function Home({ isDarkMode }) {
     }
 
     return (
-        <div className={`min-h-screen ${isDarkMode ? "bg-black text-gray-100" : " text-gray-200"} relative`}>
+        <div className={`min-h-screen ${isDarkMode ? "bg-[#1a1f3c] text-gray-100" : " text-gray-200"} relative`}>
             
             {/* Rectángulos verticales decorativos - Izquierda - ahora solo visibles en pantallas md+ */}
             <div 
