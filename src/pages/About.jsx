@@ -29,9 +29,9 @@ const About = ({ isDarkMode }) => {
           </div>
 
           {/* SplineModel - Encima de MetaBalls */}
-          <div className="absolute inset-0 z-10">
+          <div className="absolute inset-0 z-10 hidden xl:block"> {/* Mostrar solo en pantallas grandes (>=1200px) */}
             <div
-              className=" absolute inset-150 z-30 cursor-pointer h-50 w-60 -ml-66 -mt-5 rounded-xl "
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer h-20 w-60 rounded-full"
               onClick={() => navigate("/library")}
             ></div>
             <SplineModel isDarkMode={isDarkMode} />

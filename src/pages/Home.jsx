@@ -357,20 +357,19 @@ export default function Home({ isDarkMode }) {
                 </div>
 
                 {/* Contenedor de SplineModel con superposición */}
-                <div className="relative w-3/5 h-full hidden lg:block"> {/* Mostrar solo en pantallas grandes */}
-                    
+                <div className="relative w-full h-full hidden xl:block"> {/* Mostrar solo en pantallas grandes (>=1200px) */}
                     {/* Div superpuesto para capturar clics */}
                     <div
-                        className="absolute ml-35 inset-115 z-30 cursor-pointer rounded-full w-60 h-20"
+                        className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer rounded-full w-60 h-20"
                         onClick={() => navigate("/library")}
                     ></div>
 
-                    <div className="w-150 h-150 rounded-full  z-[-10] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    {/* Fondo circular detrás */}
+                    <div className="w-150 h-150 rounded-full z-[-10] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
 
-<div className="relative z-20">
-
-                    <SplineModel isDarkMode={isDarkMode} />
-</div>
+                    <div className="relative z-20">
+                        <SplineModel isDarkMode={isDarkMode} />
+                    </div>
                 </div>
             </div>
         </div>
