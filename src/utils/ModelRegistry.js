@@ -190,6 +190,16 @@ const modelAliases = {
   "iglesia sangre de cristo": "Iglesia Sangre de Cristo",
   "iglesia sangre": "Iglesia Sangre de Cristo",
   "iglesia cristo": "Iglesia Sangre de Cristo",
+  "iglesia del carmen alto": "Iglesia del Carmen Alto",
+  "iglesia carmen alto": "Iglesia del Carmen Alto",
+  "iglesia del carmen": "Iglesia del Carmen Alto",
+  "iglesia carmen": "Iglesia del Carmen Alto",
+  "iglesia de los pobres": "Iglesia de los Pobres",
+  "iglesia pobres": "Iglesia de los Pobres",
+  "Xochimilco": "Canales de Xochimilco",
+  "xochimilco": "Canales de Xochimilco",
+  "canales xochimilco": "Canales de Xochimilco",
+  "canales de xochimilco": "Canales de Xochimilco",
 };
 
 /**

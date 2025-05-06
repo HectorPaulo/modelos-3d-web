@@ -31,7 +31,7 @@ const About = ({ isDarkMode }) => {
           {/* SplineModel - Encima de MetaBalls */}
           <div className="absolute inset-0 z-10">
             <div
-              className="absolute inset-150 z-30 cursor-pointer h-20 w-60 -ml-64 mt-10 rounded-full "
+              className=" absolute inset-150 z-30 cursor-pointer h-50 w-60 -ml-66 -mt-5 rounded-xl "
               onClick={() => navigate("/library")}
             ></div>
             <SplineModel isDarkMode={isDarkMode} />
@@ -51,7 +51,7 @@ const About = ({ isDarkMode }) => {
             Esta plataforma busca preservar y difundir el patrimonio cultural a través de representaciones digitales precisas, facilitando el acceso al conocimiento histórico y arquitectónico.
           </p>
           <p className="mb-8 text-2xl font-semibold">
-            Versión 5.6.6 - Desplegado en Firebase y desarrollado con tecnologías web modernas como React | Vite, Three.js y TailwindCSS.
+            Versión 5.6.7 - Desplegado en Firebase y desarrollado con tecnologías web modernas como React | Vite, Three.js y TailwindCSS.
           </p>
         </div>
       </div>
