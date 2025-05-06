@@ -117,6 +117,28 @@ const modelRegistry = {
       maxDistance: 60,
       position: [0, -2, 35] 
     }
+  },
+  "Iglesia de los Pobres": {
+    modelType: "obj",
+    modelPath: "/Models/IglesiaPobres/output.obj",
+    color: "#ab9063",
+    camera: {
+      distance: 350,
+      minDistance: 300,
+      maxDistance: 60,
+      position: [0, 0, 350] 
+    }
+  },
+  "Iglesia del Carmen Alto": {
+    modelType: "stl",
+    modelPath: "/Models/CarmenAlto/output.stl",
+    color: "#ab9063",
+    camera: {
+      distance: 100,
+      minDistance: 100,
+      maxDistance: 60,
+      position: [0, 0, 100] 
+    }
   }
 };
 
