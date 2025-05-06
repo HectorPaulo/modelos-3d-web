@@ -295,7 +295,7 @@ export default function Home({ isDarkMode }) {
                             speed={0.5}
                         />
                     ) : (
-                        <div className="absolute bg-[#292E50] w-full h-svh">
+                        <div className="absolute bg-[#292E50] w-full h-full">
 
                         </div>
                     )}

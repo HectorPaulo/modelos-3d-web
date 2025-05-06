@@ -139,6 +139,17 @@ const modelRegistry = {
       maxDistance: 60,
       position: [0, 0, 100] 
     }
+  },
+  "Canales de Xochimilco": {
+    modelType: "stl",
+    modelPath: "/Models/Canales/output.STL",
+    color: "#ab9063",
+    camera: {
+      distance: 800,
+      minDistance: 800,
+      maxDistance: 800,
+      position: [0, 0, 800] 
+    }
   }
 };
 
