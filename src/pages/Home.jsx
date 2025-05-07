@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate, Link } from "react-router-dom"; 
 import BlurText from "../TextAnimations/BlurText/BlurText";
 import Aurora from "../Backgrounds/Aurora/Aurora";
-import MuseumModelCanvas from "../Components/Museum/MuseumModel"; 
 import { useResponsiveContext } from "../context/ResponsiveContext";
 import { getModelConfig, getAllModels } from "../utils/ModelRegistry";
 import ImageInput from "../Components/ImageInput/ImageInput";
@@ -13,6 +12,7 @@ import ComparisonModal from "../Components/Modal/ComparisionModal";
 import Loader from "../Components/Loader/Loader";
 import Alert from "../Components/Alert/Alert";
 import SplineModel from "../Components/Models/SplineModel";
+import Waves from "../Backgrounds/Waves/Waves";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -301,6 +301,20 @@ export default function Home({ isDarkMode }) {
                     )}
                 </div>
 
+                        <Waves
+                            lineColor="#fff"
+                            backgroundColor="rgba(0, 0, 0, 0.1)"
+                            waveSpeedX={0.02}
+                            waveSpeedY={0.01}
+                            waveAmpX={40}
+                            waveAmpY={20}
+                            friction={0.8}
+                            tension={0.01}
+                            maxCursorMove={200}
+                            xGap={12}
+                            yGap={36}
+                            className="h-screen -mt-20"
+                            />
                 <div className="relative z-10">
                     <div ref={headerRef} className="mx-auto flex justify-center px-4 sm:px-6 lg:px-8">
                         <div className="flex flex-col items-center justify-center space-y-25">
@@ -360,7 +374,7 @@ export default function Home({ isDarkMode }) {
                 <div className="relative w-full h-full hidden xl:block"> {/* Mostrar solo en pantallas grandes (>=1200px) */}
                     {/* Div superpuesto para capturar clics */}
                     <div
-                        className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer rounded-full w-60 h-20"
+                        className="absolute top-3/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 cursor-pointer rounded-xl w-60 h-40"
                         onClick={() => navigate("/library")}
                     ></div>
 

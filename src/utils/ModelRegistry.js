@@ -17,6 +17,7 @@ const modelRegistry = {
       maxDistance: 60,
       position: [0, -5, 35] 
     },
+    rotation: [0, Math.PI / 2, 0], // Rotar 90 grados en el eje Y
     description: "La Fuente de las 8 Regiones de Oaxaca es un tributo a la rica diversidad cultural y geográfica del estado. Es un recordatorio de que, a pesar de nuestras diferencias, todos estamos unidos por la cultura y las raíces. -Jonathan García-Sánchez"
   },
   "Bacija de barro": {
@@ -42,6 +43,7 @@ const modelRegistry = {
       maxDistance: 80,
       position: [0, 0, 80] 
     },
+    rotation: [0, Math.PI / 4, 0], // Rotar 45 grados en el eje Y
     description: "La Cruz de Piedra es un monumento histórico ubicado en el tradicional barrio de Xochimilco, en la ciudad de Oaxaca de Juárez, Oaxaca. Este sitio, compuesto por una gran cruz de cantera erigida sobre una escalinata, data del siglo XVIII y forma parte del antiguo recorrido del Viacrucis que se realizaba durante las celebraciones de Semana Santa. Además de su relevancia religiosa, la Cruz de Piedra es un punto de interés cultural y turístico, debido a su valor patrimonial y su ubicación estratégica, que ofrece una vista panorámica de la ciudad y conecta con otros sitios emblemáticos como el Auditorio Guelaguetza. El lugar simboliza la fusión entre la tradición religiosa y la riqueza arquitectónica de Oaxaca. -David Mendieta"
   },
   "Quiosco": {

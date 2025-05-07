@@ -8,7 +8,7 @@ import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { Mesh, MeshStandardMaterial, Color } from "three";
 
 // Componente para el modelo 3D
-function Model({ modelPath, modelType, texturePath, normalMapPath, color, scale }) {
+function Model({ modelPath, modelType, texturePath, normalMapPath, color, scale, rotation }) {
   const [model, setModel] = useState(null);
   const meshRef = useRef();
 
@@ -38,6 +38,12 @@ function Model({ modelPath, modelType, texturePath, normalMapPath, color, scale 
             child.material = material;
           }
         });
+
+        // Aplicar rotación inicial
+        if (rotation) {
+          obj.rotation.set(...rotation);
+        }
+
         setModel(obj);
       });
     } else if (modelType === 'stl') {
@@ -49,34 +55,38 @@ function Model({ modelPath, modelType, texturePath, normalMapPath, color, scale 
           metalness: 0.5,
         });
         const mesh = new Mesh(geometry, material);
+
+        // Aplicar rotación inicial
+        if (rotation) {
+          mesh.rotation.set(...rotation);
+        }
+
         setModel(mesh);
       });
     }
-  }, [modelPath, modelType, texturePath, normalMapPath, color]);
+  }, [modelPath, modelType, texturePath, normalMapPath, color, rotation]);
 
   if (!model) return null;
 
-  return <primitive ref={meshRef} object={model} scale={scale} />; // Aplica la escala aquí
+  return <primitive ref={meshRef} object={model} scale={scale} />;
 }
 
 // Componentes para controlar la cámara
 function CameraController({ cameraConfig }) {
   const { camera } = useThree();
   const controlsRef = useRef();
-  
+
   useEffect(() => {
     if (cameraConfig) {
       // Configurar la posición inicial de la cámara
       if (cameraConfig.position) {
         camera.position.set(...cameraConfig.position);
-      } 
-      // Si no hay posición especificada, colocar la cámara a una distancia predeterminada
-      else if (cameraConfig.distance) {
+      } else if (cameraConfig.distance) {
         camera.position.set(0, 0, cameraConfig.distance);
       }
-      
+
       camera.updateProjectionMatrix();
-      
+
       // Actualizar los límites de zoom si están especificados
       if (controlsRef.current) {
         if (cameraConfig.minDistance) {
@@ -90,7 +100,7 @@ function CameraController({ cameraConfig }) {
   }, [camera, cameraConfig]);
 
   return (
-    <OrbitControls 
+    <OrbitControls
       ref={controlsRef}
       enableZoom={true}
       enablePan={true}
