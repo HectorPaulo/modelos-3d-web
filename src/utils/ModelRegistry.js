@@ -144,10 +144,10 @@ const modelRegistry = {
     modelPath: "/Models/CarmenAlto/output.stl",
     color: "#ab9063",
     camera: {
-      distance: 100,
-      minDistance: 100,
-      maxDistance: 60,
-      position: [0, 0, 100] 
+      distance: 0.2,
+      minDistance: 0.2,
+      maxDistance: 0.2,
+      position: [0, -0.2, 0.2] 
     },
     description: "La Iglesia del Carmen Alto, ubicada a seis cuadras del Zócalo de Oaxaca sobre la calle García Vigil, es un notable ejemplo de arquitectura neoclásica construida por los Carmelitas Descalzos entre 1696 y 1751. El sitio posee gran valor histórico, pues antes fue un importante centro ceremonial prehispánico dedicado a Centeótl, la Diosa del Maíz. -Luis Santos"
   },
